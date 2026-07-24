@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct ProductRow: View {
+    let product: Product
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            VStack(alignment: .leading) {
+                Text(product.name)
+                    .font(.headline)
+                Text(product.description)
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+        }
     }
 }
 
 #Preview {
-    ProductRow()
+    ProductRow(product: .test)
 }

@@ -7,13 +7,14 @@
 
 import Foundation
 
-protocol DataRepository: JSONStorage {
-    func loadProducts() throws -> [Product]
-}
-
-extension DataRepository {
+final class DataRepository {
+    private let productService: any ProductService
+    
+    init(productService: any ProductService) {
+        self.productService = productService
+    }
+    
     func loadProducts() throws -> [Product] {
-        return try load(type: [Product].self)
+        try productService.loadProducts()
     }
 }
-

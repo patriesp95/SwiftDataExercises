@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Product: Decodable {
+struct Product: Decodable, Identifiable {
     let id: Int
     let name: String
     let description: String
@@ -20,3 +20,14 @@ struct Product: Decodable {
         case isFavorite = "is_favorite"
     }
 }
+
+#if DEBUG
+extension Product {
+    static let test = Product(
+        id: 1,
+        name:"Compact Digital Camera",
+        description: "High-resolution camera for stunning photos.",
+        isFavorite:true
+    )
+}
+#endif

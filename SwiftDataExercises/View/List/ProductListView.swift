@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct ProductListView: View {
+    
+    @State var vm = ProductsVM()
+    
     var body: some View {
-        Text("Product List View")
+        NavigationStack {
+            List {
+                ForEach(vm.products) { product in
+                    ProductRow(product: product)
+                }
+            }
+            .listStyle(.grouped)
+            .navigationTitle("Products")
+        }
     }
 }
 
