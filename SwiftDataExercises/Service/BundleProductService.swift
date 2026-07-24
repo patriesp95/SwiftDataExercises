@@ -12,9 +12,3 @@ struct BundleProductService: ProductService {
         Bundle.main.url(forResource: "products", withExtension: "json")!
     }
 }
-
-struct BundleProductServiceTest: ProductService {
-    var url: URL {
-        Bundle.main.url(forResource: "products", withExtension: "json")!
-    }
-}

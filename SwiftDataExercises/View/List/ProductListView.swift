@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProductListView: View {
     
-    @State var vm = ProductsVM()
+    @State private var vm = ProductsVM()
     
     var body: some View {
         NavigationStack {

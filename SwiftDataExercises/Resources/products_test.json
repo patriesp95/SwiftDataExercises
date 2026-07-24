@@ -1,0 +1,4 @@
+[{"id":1,"product_name":"Compact Digital Camera","product_description":"High-resolution camera for stunning photos.","is_favorite":true},
+{"id":2,"product_name":"Luxury Rolling Makeup Case","product_description":"Stylish and spacious case for makeup and beauty products.","is_favorite":true},
+{"id":3,"product_name":"Italian Marinara Sauce","product_description":"Classic marinara sauce for pasta, pizza, or dipping.","is_favorite":false},
+{"id":4,"product_name":"Walnut Halves","product_description":"Fresh walnut halves for baking or snacking.","is_favorite":true}]

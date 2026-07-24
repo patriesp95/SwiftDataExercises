@@ -13,7 +13,7 @@ final class ProductsVM {
     private let repository: DataRepository
 
     init(repository: DataRepository = DataRepository(
-            productService: BundleProductService())
+            productService: MockProductService())
     ) {
         self.repository = repository
 
