@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct ProductRow: View {
-    let product: Product
+    var product: Product
 
     var body: some View {
-        HStack {
+        NavigationLink {
+            ProductDetailView(name: product.name, description: product.description)
+        } label: {
             VStack(alignment: .leading) {
                 Text(product.name)
                     .font(.headline)
+                    .foregroundStyle(.primary)
                 Text(product.description)
-                    .font(.footnote)
+                    .font(.caption)
                     .foregroundStyle(.secondary)
+
             }
         }
     }

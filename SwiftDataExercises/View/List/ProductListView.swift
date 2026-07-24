@@ -18,9 +18,10 @@ struct ProductListView: View {
                     ProductRow(product: product)
                 }
             }
-            .listStyle(.grouped)
+            .listStyle(.inset)
             .navigationTitle("Products")
         }
+        .navigationLinkIndicatorVisibility(.hidden)
     }
 }
 

@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    var body: some View {
-        Text("Product Detail View")
+    
+    var name: String
+    var description: String
 
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(name)
+                .font(.headline)
+            Text(description)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+        }
     }
 }
 
 #Preview {
-    ProductDetailView()
+    ProductDetailView(name: Product.test.name, description: Product.test.description)
 }
