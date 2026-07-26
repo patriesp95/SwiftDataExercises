@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct MockCharacterService: CharacterService, APIClient {
+struct MockCharacterService: CharacterService {
     let session: URLSession
+    
     func loadCharacters() async throws -> [Character] {
         return Character.test
     }

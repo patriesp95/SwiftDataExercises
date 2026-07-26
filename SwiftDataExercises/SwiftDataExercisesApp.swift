@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct SwiftDataExercisesApp: App {
+    @State private var vm = CharacterViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(vm)
         }
     }
 }

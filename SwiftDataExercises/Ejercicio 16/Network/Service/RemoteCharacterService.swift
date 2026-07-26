@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct RemoteCharacterService: CharacterService, APIClient {
+struct RemoteCharacterService: CharacterService {
     let session: URLSession
+    
     func loadCharacters() async throws -> [Character] {
         let dto = try await request(
             type: CharacterResponseDTO.self,

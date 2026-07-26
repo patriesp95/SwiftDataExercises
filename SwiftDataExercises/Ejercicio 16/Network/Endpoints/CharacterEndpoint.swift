@@ -7,7 +7,8 @@
 
 import Foundation
 
+let api = URL(string: "https://rickandmortyapi.com/api")!
+
 struct CharacterEndpoint {
     static let getCharacters = api.appending(path: "/character")
 }
-
