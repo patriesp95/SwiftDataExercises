@@ -18,8 +18,7 @@ struct Character: Identifiable, Decodable {
 
 #if DEBUG
     extension Character {
-        static let test = [
-            Character(
+        static let test = Character(
                 id: UUID(),
                 name: "Rick Sanchez",
                 status: "Alive",
@@ -30,6 +29,5 @@ struct Character: Identifiable, Decodable {
                         "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
                 )
             )
-        ]
     }
 #endif

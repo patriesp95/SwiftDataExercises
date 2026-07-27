@@ -12,13 +12,21 @@ struct CharacterListView: View {
     @State private var showAlert = false
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading){
             switch vm.state {
             case .loading:
                 ProgressView()
             case .loaded:
-                List(vm.characters) { character in
-                    Text(character.name)
+                NavigationStack {
+                    List(vm.characters) { character in
+                        NavigationLink {
+                             CharacterDetailView(character)
+                        } label: {
+                            Text(character.name)
+                        }
+
+                    }
+                    .navigationTitle("Characters")
                 }
             case .empty:
                 ListEmptyView()

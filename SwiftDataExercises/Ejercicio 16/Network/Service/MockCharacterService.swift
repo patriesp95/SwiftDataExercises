@@ -11,6 +11,6 @@ struct MockCharacterService: CharacterService {
     let session: URLSession
     
     func loadCharacters() async throws -> [Character] {
-        return Character.test
+        return [Character.test]
     }
 }
