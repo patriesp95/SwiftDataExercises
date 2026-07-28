@@ -8,6 +8,7 @@
 import Foundation
 
 
-protocol CharacterService: APIClient {
-    func loadCharacters() async throws -> [Character]
+protocol CharacterService {
+    func loadCharacters() async throws -> [CharacterDTO]
 }
+

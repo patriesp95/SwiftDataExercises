@@ -21,7 +21,6 @@ final class ProductsVM {
             self.products = try repository.loadProducts()
         } catch {
             self.products = []
-            print(error)
         }
     }
 }

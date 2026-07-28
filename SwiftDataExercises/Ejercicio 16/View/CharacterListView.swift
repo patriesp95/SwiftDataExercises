@@ -43,7 +43,7 @@ struct CharacterListView: View {
         .environment(
             CharacterViewModel(
                 repository: CharacterRepository(
-                    service: RemoteCharacterService(session: .shared)
+                    service: BundleCharacterService()
                 )
             )
         )

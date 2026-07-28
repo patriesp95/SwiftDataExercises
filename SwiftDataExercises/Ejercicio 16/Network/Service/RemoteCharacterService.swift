@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct RemoteCharacterService: CharacterService {
+struct RemoteCharacterService: CharacterService, APIClient {
     let session: URLSession
     
-    func loadCharacters() async throws -> [Character] {
+    func loadCharacters() async throws -> [CharacterDTO] {
         let dto = try await request(
             type: CharacterResponseDTO.self,
             URLRequest.get(url: CharacterEndpoint.getCharacters)
         )
-        return dto.results.map { $0.toDomain() }
+        return dto.results
     }
 }

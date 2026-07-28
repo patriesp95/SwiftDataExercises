@@ -30,7 +30,7 @@ final class CharacterViewModel {
     }
 
     convenience init() {
-        self.init(repository: CharacterRepository(service: RemoteCharacterService(session: .shared)))
+        self.init(repository: CharacterRepository(service: BundleCharacterService()))
     }
     
     func getCharacters() async {
@@ -39,7 +39,7 @@ final class CharacterViewModel {
             state = .loaded
         } catch {
             errorMsg = error.localizedDescription
-            showError.toggle()
+            showError = true
         }
            
         if characters.isEmpty {

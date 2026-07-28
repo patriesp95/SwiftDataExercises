@@ -15,7 +15,7 @@ final class CharacterRepository {
     }
 
     func loadCharacters() async throws -> [Character] {
-        try await service.loadCharacters()
+        try await service.loadCharacters().map { $0.toDomain() }
     }
 
 }

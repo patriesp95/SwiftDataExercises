@@ -12,6 +12,10 @@ protocol APIClient {
 }
 
 extension APIClient {
+    var decoder: JSONDecoder {
+        JSONDecoder()
+    }
+    
     func request<T>(type: T.Type, _ request: URLRequest) async throws -> T where T: Decodable {
         let (data, response) = try await session.getData(for: request)
 
@@ -19,6 +23,6 @@ extension APIClient {
             throw APIError.httpError(response.statusCode)
         }
 
-        return try JSONDecoder().decode(type, from: data)
+        return try decoder.decode(type, from: data)
     }
 }
