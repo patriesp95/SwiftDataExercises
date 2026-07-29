@@ -25,7 +25,7 @@ final class CharacterViewModel2 {
     var isLoadingInitialPage = false
     var isLoadingNextPage = false
     var hasMorePages = true
-    private var currentPage = 0
+    private var currentPage = 1
 
     var showError2 = false
     var errorMsg2 = ""
@@ -40,7 +40,7 @@ final class CharacterViewModel2 {
                 repository:
                     CharacterRepository2(
                         service2:
-                            BundleCharacterService2()
+                            RemoteCharacterService2(session2: .shared)
                     )
             )
         )
@@ -51,6 +51,7 @@ final class CharacterViewModel2 {
             self.characters2 = try await loadAndSortCharactersUseCase.execute(page: currentPage)
             state2 = .loaded2
         } catch {
+            print(error.localizedDescription)
             errorMsg2 = error.localizedDescription
             showError2 = true
         }

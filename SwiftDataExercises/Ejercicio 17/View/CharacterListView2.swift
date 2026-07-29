@@ -44,7 +44,7 @@ struct CharacterListView2: View {
             CharacterViewModel2(
                 loadAndSortCharactersUseCase: LoadAndSortCharactersUseCase(
                     repository: CharacterRepository2(
-                        service2: BundleCharacterService2()
+                        service2: RemoteCharacterService2(session2: .shared)
                     )
                 )
             )

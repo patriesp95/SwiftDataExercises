@@ -11,4 +11,11 @@ let api2 = URL(string: "https://rickandmortyapi.com/api")!
 
 struct CharacterEndpoint2 {
     static let getCharacters2 = api2.appending(path: "/character")
+    static func getCharacters2Paginated(page: Int) -> URL {
+        api2
+            .appending(path: "character")
+            .appending(queryItems: [
+                URLQueryItem(name: "page", value: "\(page)")
+            ])
+    }
 }

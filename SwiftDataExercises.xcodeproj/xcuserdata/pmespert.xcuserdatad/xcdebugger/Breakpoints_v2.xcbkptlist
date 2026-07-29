@@ -7,227 +7,77 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "691381AE-B95B-4463-AFBE-2D03FD0318C7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwiftDataExercises/Ejercicio 17/Repository/CharacterRepository2.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "loadCharacters2(page:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "691381AE-B95B-4463-AFBE-2D03FD0318C7 - 4e03d4fb0e24e578"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for SwiftDataExercises.CharacterRepository2.loadCharacters2(page: Swift.Int) async throws -&gt; SwiftDataExercises.CharacterPage"
-                  moduleName = "SwiftDataExercises.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/Repository/CharacterRepository2.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18">
-               </Location>
-               <Location
-                  uuid = "691381AE-B95B-4463-AFBE-2D03FD0318C7 - d708f59566624f4a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for SwiftDataExercises.CharacterRepository2.loadCharacters2(page: Swift.Int) async throws -&gt; SwiftDataExercises.CharacterPage"
-                  moduleName = "SwiftDataExercises.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/Repository/CharacterRepository2.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18">
-               </Location>
-               <Location
-                  uuid = "691381AE-B95B-4463-AFBE-2D03FD0318C7 - 94dbaa5835fab74f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for SwiftDataExercises.CharacterRepository2.loadCharacters2(page: Swift.Int) async throws -&gt; SwiftDataExercises.CharacterPage"
-                  moduleName = "SwiftDataExercises.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/Repository/CharacterRepository2.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "053FBA49-D14A-4A6B-9AC4-C5C2CC1A1C9C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwiftDataExercises/Ejercicio 17/Network/Service/BundleCharacterService2.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "loadCharacters2(page:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "053FBA49-D14A-4A6B-9AC4-C5C2CC1A1C9C - afd915f9a11d3d7c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for SwiftDataExercises.BundleCharacterService2.loadCharacters2(page: Swift.Int) async throws -&gt; SwiftDataExercises.CharacterPage"
-                  moduleName = "SwiftDataExercises.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/Network/Service/BundleCharacterService2.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17">
-               </Location>
-               <Location
-                  uuid = "053FBA49-D14A-4A6B-9AC4-C5C2CC1A1C9C - afd915f9a11d3d7c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for SwiftDataExercises.BundleCharacterService2.loadCharacters2(page: Swift.Int) async throws -&gt; SwiftDataExercises.CharacterPage"
-                  moduleName = "SwiftDataExercises.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/Network/Service/BundleCharacterService2.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "19E2C6C1-41F2-48A0-AC26-8DB5F42D1B5B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwiftDataExercises/Ejercicio 17/Network/Service/BundleCharacterService2.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "6"
-            endingLineNumber = "6"
-            landmarkName = "unknown"
-            landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C01AE662-800A-4EDC-B035-C5EED324B4A9"
+            uuid = "13367448-2F4C-4709-8A77-04B9721F153B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftDataExercises/Ejercicio 17/ViewModel/CharacterViewModel2.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "getCharacters2()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C01AE662-800A-4EDC-B035-C5EED324B4A9 - 9edbe41f6464c8d2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for SwiftDataExercises.CharacterViewModel2.getCharacters2() async -&gt; ()"
-                  moduleName = "SwiftDataExercises.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/ViewModel/CharacterViewModel2.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51">
-               </Location>
-               <Location
-                  uuid = "C01AE662-800A-4EDC-B035-C5EED324B4A9 - 2358f4f826123cc9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for SwiftDataExercises.CharacterViewModel2.getCharacters2() async -&gt; ()"
-                  moduleName = "SwiftDataExercises.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/ViewModel/CharacterViewModel2.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51">
-               </Location>
-               <Location
-                  uuid = "C01AE662-800A-4EDC-B035-C5EED324B4A9 - 2ea1f322f47bfc2c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for SwiftDataExercises.CharacterViewModel2.getCharacters2() async -&gt; ()"
-                  moduleName = "SwiftDataExercises.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/ViewModel/CharacterViewModel2.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B63F56BA-0A7B-41A3-8E06-08B826FF1607"
+            uuid = "6D13BC12-9A98-4E52-8392-9B4C63BFE912"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwiftDataExercises/Ejercicio 17/Network/DTOs/CharacterResponseDTO2+Mapper.swift"
+            filePath = "SwiftDataExercises/Ejercicio 17/Network/Endpoints/CharacterEndpoint2.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "et co"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "getCharacters2Paginated(page:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1DECB381-0151-4E56-B91F-C260222F95CD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwiftDataExercises/Ejercicio 17/Network/Endpoints/CharacterEndpoint2.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
-                  uuid = "B63F56BA-0A7B-41A3-8E06-08B826FF1607 - 5203d256c3ea61cc"
+                  uuid = "1DECB381-0151-4E56-B91F-C260222F95CD - 34840afb99bdf17e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static SwiftDataExercises.CharacterResponseDTO2.pageNumber(from: Swift.String) -&gt; Swift.Optional&lt;Swift.Int&gt;"
+                  symbolName = "one-time initialization function for api2"
                   moduleName = "SwiftDataExercises.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/Network/DTOs/CharacterResponseDTO2+Mapper.swift"
+                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/Network/Endpoints/CharacterEndpoint2.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20">
+                  startingLineNumber = "10"
+                  endingLineNumber = "10">
                </Location>
                <Location
-                  uuid = "B63F56BA-0A7B-41A3-8E06-08B826FF1607 - ad06e037fb0f2762"
+                  uuid = "1DECB381-0151-4E56-B91F-C260222F95CD - b9ab96dbce506a68"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Foundation.URLQueryItem) -&gt; Swift.Bool in static SwiftDataExercises.CharacterResponseDTO2.pageNumber(from: Swift.String) -&gt; Swift.Optional&lt;Swift.Int&gt;"
+                  symbolName = "SwiftDataExercises.api2.unsafeMutableAddressor : Foundation.URL"
                   moduleName = "SwiftDataExercises.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/Network/DTOs/CharacterResponseDTO2+Mapper.swift"
+                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/Network/Endpoints/CharacterEndpoint2.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20">
+                  startingLineNumber = "10"
+                  endingLineNumber = "10">
                </Location>
             </Locations>
          </BreakpointContent>
