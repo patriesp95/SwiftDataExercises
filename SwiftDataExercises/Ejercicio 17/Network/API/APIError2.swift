@@ -6,7 +6,8 @@
 //
 
 import Foundation
-enum APIError: LocalizedError {
+
+enum APIError2: LocalizedError {
     case general(Error)
     case invalidResponse
     case json(Error)
