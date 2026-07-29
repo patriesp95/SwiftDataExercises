@@ -8,7 +8,7 @@
 import Foundation
 
 struct MockCharacterService2: CharacterService2 {
-    func loadCharacters2() async throws -> [CharacterDTO2] {
-        return [.characterDTOTest2]
+    func loadCharacters2(page: Int) async throws -> CharacterPage {
+        return .characterPageTest2
     }
 }

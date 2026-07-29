@@ -14,8 +14,8 @@ final class CharacterRepository2 {
         self.service2 = service2
     }
 
-    func loadCharacters2() async throws -> [Character2] {
-        try await service2.loadCharacters2().map { $0.toDomain() }
+    func loadCharacters2(page: Int) async throws -> CharacterPage {
+        try await service2.loadCharacters2(page: page)
     }
 
 }

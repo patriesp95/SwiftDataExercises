@@ -16,33 +16,46 @@ enum ViewState2 {
 @Observable @MainActor
 final class CharacterViewModel2 {
     
-    let repository2: CharacterRepository2
+    let loadAndSortCharactersUseCase: LoadAndSortCharactersUseCase
     
-    var characters2: [Character2] = []
-    
+    var characters2: CharacterPage = .characterPagResponseEmpty2
+
     var state2: ViewState2 = .loading2
+    
+    var isLoadingInitialPage = false
+    var isLoadingNextPage = false
+    var hasMorePages = true
+    private var currentPage = 0
 
     var showError2 = false
     var errorMsg2 = ""
-    
-    init(repository2: CharacterRepository2) {
-        self.repository2 = repository2
+
+    init(loadAndSortCharactersUseCase: LoadAndSortCharactersUseCase) {
+        self.loadAndSortCharactersUseCase = loadAndSortCharactersUseCase
     }
 
     convenience init() {
-        self.init(repository2: CharacterRepository2(service2: BundleCharacterService2()))
+        self.init(loadAndSortCharactersUseCase:
+            LoadAndSortCharactersUseCase(
+                repository:
+                    CharacterRepository2(
+                        service2:
+                            BundleCharacterService2()
+                    )
+            )
+        )
     }
     
     func getCharacters2() async {
         do {
-            self.characters2 = try await repository2.loadCharacters2()
+            self.characters2 = try await loadAndSortCharactersUseCase.execute(page: currentPage)
             state2 = .loaded2
         } catch {
             errorMsg2 = error.localizedDescription
             showError2 = true
         }
            
-        if characters2.isEmpty {
+        if characters2.characters.isEmpty {
             state2 = .empty2
         }
     }

@@ -10,11 +10,11 @@ import Foundation
 struct RemoteCharacterService2: CharacterService2, APIClient2 {
     let session2: URLSession
     
-    func loadCharacters2() async throws -> [CharacterDTO2] {
+    func loadCharacters2(page: Int) async throws -> CharacterPage {
         let dto = try await request2(
             type: CharacterResponseDTO2.self,
             URLRequest.get2(url: CharacterEndpoint2.getCharacters2)
         )
-        return dto.results
+        return dto.toDomain()
     }
 }

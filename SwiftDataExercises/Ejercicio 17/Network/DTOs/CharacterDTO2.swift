@@ -7,17 +7,6 @@
 
 import Foundation
 
-struct Info2: Decodable {
-    let count: Int
-    let pages: Int
-    let next: String?
-    let prev: String?
-}
-
-struct Results2: Decodable {
-    let results: [CharacterDTO2]
-}
-
 struct CharacterDTO2: Decodable, Identifiable {
     let id: Int
     let name: String

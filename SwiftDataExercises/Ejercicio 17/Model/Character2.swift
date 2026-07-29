@@ -19,15 +19,15 @@ struct Character2: Identifiable, Decodable {
 #if DEBUG
     extension Character2 {
         static let test2 = Character2(
-                id: UUID(),
-                name: "Rick Sanchez",
-                status: "Alive",
-                species: "Human",
-                gender: "Male",
-                imageURL: URL(
-                    string:
-                        "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-                )
+            id: UUID(),
+            name: "Rick Sanchez",
+            status: "Alive",
+            species: "Human",
+            gender: "Male",
+            imageURL: URL(
+                string:
+                    "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
             )
+        )
     }
 #endif

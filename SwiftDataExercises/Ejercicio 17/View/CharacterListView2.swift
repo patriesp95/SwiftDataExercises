@@ -18,7 +18,7 @@ struct CharacterListView2: View {
                 ProgressView()
             case .loaded2:
                 NavigationStack {
-                    List(vm2.characters2) { character in
+                    List(vm2.characters2.characters) { character in
                         NavigationLink {
                              CharacterDetailView2(character)
                         } label: {
@@ -42,8 +42,10 @@ struct CharacterListView2: View {
     CharacterListView2()
         .environment(
             CharacterViewModel2(
-                repository2: CharacterRepository2(
-                    service2: BundleCharacterService2()
+                loadAndSortCharactersUseCase: LoadAndSortCharactersUseCase(
+                    repository: CharacterRepository2(
+                        service2: BundleCharacterService2()
+                    )
                 )
             )
         )
