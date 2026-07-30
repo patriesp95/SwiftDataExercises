@@ -7,8 +7,8 @@
 
 import Foundation
 
-final class CharacterRepository2 {
-    private let service2: any CharacterService2
+final class CharacterRepository2: CharacterRepository2Protocol {
+    var service2: any CharacterService2
     
     init(service2: any CharacterService2) {
         self.service2 = service2
@@ -17,5 +17,4 @@ final class CharacterRepository2 {
     func loadCharacters2(page: Int) async throws -> CharacterPage {
         try await service2.loadCharacters2(page: page)
     }
-
 }
