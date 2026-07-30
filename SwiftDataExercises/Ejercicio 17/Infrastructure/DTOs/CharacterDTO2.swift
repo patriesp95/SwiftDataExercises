@@ -8,7 +8,7 @@
 import Foundation
 
 struct CharacterDTO2: Decodable, Identifiable {
-    let id: Int
+    let id: UUID
     let name: String
     let status: String
     let species: String

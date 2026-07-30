@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct CharacterPage: Decodable {
+struct CharacterPage {
     var characters: [Character2]
     let nextPage: Int?
 }

@@ -13,9 +13,9 @@ protocol LoadAndSortCharactersUseCaseProtocol {
 
 struct LoadAndSortCharactersUseCase: LoadAndSortCharactersUseCaseProtocol {
 
-    private let repository: CharacterRepository2
+    private let repository: CharacterRepository2Protocol
 
-    init(repository: CharacterRepository2) {
+    init(repository: CharacterRepository2Protocol) {
         self.repository = repository
     }
 

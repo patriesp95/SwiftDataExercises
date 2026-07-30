@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Character2: Identifiable, Decodable {
+struct Character2: Identifiable {
     let id: UUID
     let name: String
     let status: String

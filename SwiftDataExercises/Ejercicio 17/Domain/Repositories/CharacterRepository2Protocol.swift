@@ -8,7 +8,5 @@
 import Foundation
 
 protocol CharacterRepository2Protocol {
-    var service2: any CharacterService2 { get set }
-
     func loadCharacters2(page: Int) async throws -> CharacterPage
 }

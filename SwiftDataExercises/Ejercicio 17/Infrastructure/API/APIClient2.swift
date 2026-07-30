@@ -23,6 +23,10 @@ extension APIClient2 {
             throw APIError2.httpError(response.statusCode)
         }
 
-        return try decoder.decode(type, from: data)
+        do {
+            return try decoder.decode(type, from: data)
+        } catch {
+            throw APIError2.json(error)
+        }
     }
 }
