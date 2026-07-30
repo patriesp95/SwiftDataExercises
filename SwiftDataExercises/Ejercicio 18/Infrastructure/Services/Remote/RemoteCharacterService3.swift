@@ -18,7 +18,7 @@ struct RemoteCharacterService3: CharacterService3, APIClient3 {
             )
             return dto.toDomain()
         } catch {
-            throw APIError3.invalidResponse
+            throw APIError3.general(error)
         }
     }
 }

@@ -28,10 +28,15 @@ final class CharacterRepository3: CharacterRepository3Protocol {
     }
 
     func loadCharacters3(page: Int) async throws -> CharacterPage3 {
-        do {
-            return try await remoteService.loadCharacters3(page: page)
-        } catch {
-            return try await localService.loadCharacters3(page: page)
-        }
+        switch dataSource {
+            case .remote:
+                do {
+                    return try await remoteService.loadCharacters3(page: page)
+                } catch {
+                    return try await localService.loadCharacters3(page: page)
+                }
+            case .local:
+                return try await localService.loadCharacters3(page: page)
+            }
     }
 }
