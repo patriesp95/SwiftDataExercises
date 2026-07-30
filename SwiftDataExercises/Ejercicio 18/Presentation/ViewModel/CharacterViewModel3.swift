@@ -25,7 +25,6 @@ final class CharacterViewModel3 {
     var isLoadingInitialPage = false
     var isLoadingNextPage = false
     var hasMorePages = true
-    private var currentPage = 1
     private var nextPage: Int? = 1
 
     var showError3 = false
@@ -45,7 +44,7 @@ final class CharacterViewModel3 {
                                 session3: .shared
                             ),
                             localService: BundleCharacterService3(),
-                            dataSource: .remote
+                            characterDataSource: .remote
                         )
                 )
         )

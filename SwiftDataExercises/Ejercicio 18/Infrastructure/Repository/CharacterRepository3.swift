@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum DataSource {
+enum CharacterDataSource {
     case remote
     case local
 }
@@ -15,20 +15,20 @@ enum DataSource {
 final class CharacterRepository3: CharacterRepository3Protocol {
     private let remoteService: any CharacterService3
     private let localService: any CharacterService3
-    private let dataSource: DataSource
+    private let characterDataSource: CharacterDataSource
 
     init(
         remoteService: any CharacterService3,
         localService: any CharacterService3,
-        dataSource: DataSource
+        characterDataSource: CharacterDataSource
     ) {
         self.remoteService = remoteService
         self.localService = localService
-        self.dataSource = dataSource
+        self.characterDataSource = characterDataSource
     }
 
     func loadCharacters3(page: Int) async throws -> CharacterPage3 {
-        switch dataSource {
+        switch characterDataSource {
             case .remote:
                 do {
                     return try await remoteService.loadCharacters3(page: page)
