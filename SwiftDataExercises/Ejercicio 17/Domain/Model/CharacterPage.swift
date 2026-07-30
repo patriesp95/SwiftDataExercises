@@ -7,7 +7,7 @@
 import Foundation
 
 struct CharacterPage: Decodable {
-    let characters: [Character2]
+    var characters: [Character2]
     let nextPage: Int?
 }
 

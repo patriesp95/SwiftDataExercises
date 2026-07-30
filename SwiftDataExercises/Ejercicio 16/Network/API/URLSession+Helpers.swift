@@ -16,6 +16,7 @@ extension URLSession {
             }
             return (data, httpResponse)
         } catch {
+            print(error)
             throw .general(error)
         }
     }

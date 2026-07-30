@@ -18,13 +18,31 @@ struct CharacterListView2: View {
                 ProgressView()
             case .loaded2:
                 NavigationStack {
-                    List(vm2.characters2.characters) { character in
-                        NavigationLink {
-                             CharacterDetailView2(character)
-                        } label: {
-                            Text(character.name)
+                    List {
+                        ForEach(vm2.characters2.characters) { character in
+                            NavigationLink {
+                                CharacterDetailView2(character)
+                            } label: {
+                                Text(character.name)
+                            }
+                            .task {
+                                if character.id == vm2.characters2.characters.last?.id,
+                                   vm2.hasMorePages,
+                                   !vm2.isLoadingNextPage {
+                                    vm2.isLoadingInitialPage = false
+                                    vm2.isLoadingNextPage = true
+                                    await vm2.getCharacters2()
+                                    vm2.isLoadingNextPage = false
+                                }
+                            }
                         }
-
+                        if vm2.isLoadingNextPage {
+                            HStack {
+                                Spacer()
+                                ProgressView()
+                                Spacer()
+                            }
+                        }
                     }
                     .navigationTitle("Characters")
                 }
@@ -33,6 +51,7 @@ struct CharacterListView2: View {
             }
         }
         .task(priority: .high) {
+            vm2.isLoadingInitialPage = true
             await vm2.getCharacters2()
         }
     }
