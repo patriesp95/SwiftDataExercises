@@ -65,7 +65,6 @@ final class CharacterViewModel2 {
                     self.hasMorePages = nextPageResponse.nextPage != nil
                     state2 = .loaded2
                 } else if isLoadingNextPage && !hasMorePages {
-                    print("hemos llegado al final.")
                     state2 = .loaded2
                 }
             }
