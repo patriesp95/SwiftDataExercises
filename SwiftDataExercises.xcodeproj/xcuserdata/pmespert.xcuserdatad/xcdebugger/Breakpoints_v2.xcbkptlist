@@ -18,6 +18,156 @@
             endingLineNumber = "19"
             landmarkName = "getData2(for:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "96978EBF-7970-4A55-94B2-CDCC018730FF - 6f0603cf768f5df9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for __C.NSURLSession.getData2(for: Foundation.URLRequest) async throws(SwiftDataExercises.APIError2) -&gt; (data: Foundation.Data, response: __C.NSHTTPURLResponse)"
+                  moduleName = "SwiftDataExercises.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/Infrastructure/API/URLSession2+Helpers.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19">
+               </Location>
+               <Location
+                  uuid = "96978EBF-7970-4A55-94B2-CDCC018730FF - b9b2a29cf7399f16"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for __C.NSURLSession.getData2(for: Foundation.URLRequest) async throws(SwiftDataExercises.APIError2) -&gt; (data: Foundation.Data, response: __C.NSHTTPURLResponse)"
+                  moduleName = "SwiftDataExercises.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2017/Infrastructure/API/URLSession2+Helpers.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C267C590-E0FA-4358-BEDC-79C60D171971"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwiftDataExercises/Ejercicio 18/Infrastructure/Services/Remote/RemoteCharacterService3.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "loadCharacters3(page:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C267C590-E0FA-4358-BEDC-79C60D171971 - 96a870d6e24fbe9c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for SwiftDataExercises.RemoteCharacterService3.loadCharacters3(page: Swift.Int) async throws -&gt; SwiftDataExercises.CharacterPage3"
+                  moduleName = "SwiftDataExercises.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2018/Infrastructure/Services/Remote/RemoteCharacterService3.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21">
+               </Location>
+               <Location
+                  uuid = "C267C590-E0FA-4358-BEDC-79C60D171971 - 96a870d6e24fbe9c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for SwiftDataExercises.RemoteCharacterService3.loadCharacters3(page: Swift.Int) async throws -&gt; SwiftDataExercises.CharacterPage3"
+                  moduleName = "SwiftDataExercises.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2018/Infrastructure/Services/Remote/RemoteCharacterService3.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ABBF15C4-729D-4936-80BB-E15E27B6B3F4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwiftDataExercises/Ejercicio 18/Infrastructure/Repository/CharacterRepository3.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "loadCharacters3(page:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "ABBF15C4-729D-4936-80BB-E15E27B6B3F4 - 77e90851b872dbde"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for SwiftDataExercises.CharacterRepository3.loadCharacters3(page: Swift.Int) async throws -&gt; SwiftDataExercises.CharacterPage3"
+                  moduleName = "SwiftDataExercises.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2018/Infrastructure/Repository/CharacterRepository3.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34">
+               </Location>
+               <Location
+                  uuid = "ABBF15C4-729D-4936-80BB-E15E27B6B3F4 - 7e0b747dd447a4d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) await resume partial function for SwiftDataExercises.CharacterRepository3.loadCharacters3(page: Swift.Int) async throws -&gt; SwiftDataExercises.CharacterPage3"
+                  moduleName = "SwiftDataExercises.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2018/Infrastructure/Repository/CharacterRepository3.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34">
+               </Location>
+               <Location
+                  uuid = "ABBF15C4-729D-4936-80BB-E15E27B6B3F4 - bd74e5217fb087c4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for SwiftDataExercises.CharacterRepository3.loadCharacters3(page: Swift.Int) async throws -&gt; SwiftDataExercises.CharacterPage3"
+                  moduleName = "SwiftDataExercises.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2018/Infrastructure/Repository/CharacterRepository3.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34">
+               </Location>
+               <Location
+                  uuid = "ABBF15C4-729D-4936-80BB-E15E27B6B3F4 - 41ca6b489c5159c1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for SwiftDataExercises.CharacterRepository3.loadCharacters3(page: Swift.Int) async throws -&gt; SwiftDataExercises.CharacterPage3"
+                  moduleName = "SwiftDataExercises.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Sandisk%20SSD/code/MyPersonalProjects/SwiftDataExercises/SwiftDataExercises/Ejercicio%2018/Infrastructure/Repository/CharacterRepository3.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

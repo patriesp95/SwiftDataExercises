@@ -27,10 +27,13 @@ struct CharacterListView3: View {
                                 Text(character.name)
                             }
                             .task {
-                                guard character.id == vm3.characters3.characters.last?.id,
-                                      vm3.hasMorePages,
-                                      !vm3.isLoadingNextPage,
-                                      !vm3.isLoadingInitialPage else { return }
+                                guard
+                                    character.id
+                                        == vm3.characters3.characters.last?.id,
+                                    vm3.hasMorePages,
+                                    !vm3.isLoadingNextPage,
+                                    !vm3.isLoadingInitialPage
+                                else { return }
                                 vm3.isLoadingNextPage = true
                                 await vm3.getCharacters3()
                                 vm3.isLoadingNextPage = false
@@ -50,7 +53,9 @@ struct CharacterListView3: View {
             }
             .navigationTitle("Characters")
             .refreshable {
-                guard !vm3.isLoadingInitialPage, !vm3.isLoadingNextPage else { return }
+                guard !vm3.isLoadingInitialPage, !vm3.isLoadingNextPage else {
+                    return
+                }
                 vm3.characters3.characters = []
                 vm3.hasMorePages = true
                 vm3.showError3 = false
@@ -60,15 +65,16 @@ struct CharacterListView3: View {
                 vm3.isLoadingInitialPage = false
             }
             .alert("Error", isPresented: $vm3.showError3) {
-                Button("OK", role: .cancel) { }
+                Button("OK", role: .cancel) {}
             } message: {
                 Text(vm3.errorMsg3)
             }
         }
         .task(priority: .high) {
             guard vm3.characters3.characters.isEmpty,
-                  !vm3.isLoadingInitialPage,
-                  !vm3.isLoadingNextPage else { return }
+                !vm3.isLoadingInitialPage,
+                !vm3.isLoadingNextPage
+            else { return }
             vm3.isLoadingInitialPage = true
             await vm3.getCharacters3()
             vm3.isLoadingInitialPage = false
@@ -82,7 +88,11 @@ struct CharacterListView3: View {
             CharacterViewModel3(
                 loadAndSortCharactersUseCase: LoadAndSortCharactersUseCase3(
                     repository: CharacterRepository3(
-                        service3: RemoteCharacterService3(session3: .shared)
+                        remoteService: RemoteCharacterService3(
+                            session3: .shared
+                        ),
+                        localService: BundleCharacterService3(),
+                        dataSource: .remote
                     )
                 )
             )

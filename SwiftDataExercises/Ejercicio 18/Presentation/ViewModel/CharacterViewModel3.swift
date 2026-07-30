@@ -15,13 +15,13 @@ enum ViewState3 {
 
 @Observable @MainActor
 final class CharacterViewModel3 {
-    
+
     let loadAndSortCharactersUseCase: LoadAndSortCharactersUseCase3
-    
+
     var characters3: CharacterPage3 = .characterPagResponseEmpty3
 
     var state3: ViewState3 = .loading3
-    
+
     var isLoadingInitialPage = false
     var isLoadingNextPage = false
     var hasMorePages = true
@@ -36,31 +36,44 @@ final class CharacterViewModel3 {
     }
 
     convenience init() {
-        self.init(loadAndSortCharactersUseCase:
-            LoadAndSortCharactersUseCase3(
-                repository:
-                    CharacterRepository3(
-                        service3:
-                            RemoteCharacterService3(session3: .shared)
-                    )
-            )
+        self.init(
+            loadAndSortCharactersUseCase:
+                LoadAndSortCharactersUseCase3(
+                    repository:
+                        CharacterRepository3(
+                            remoteService: RemoteCharacterService3(
+                                session3: .shared
+                            ),
+                            localService: BundleCharacterService3(),
+                            dataSource: .remote
+                        )
+                )
         )
     }
-    
+
     func getCharacters3() async {
         if isLoadingInitialPage {
             state3 = .loading3
         }
         do {
             if isLoadingInitialPage {
-                self.characters3 = try await loadAndSortCharactersUseCase.execute(page: 1)
+                self.characters3 =
+                    try await loadAndSortCharactersUseCase.execute(page: 1)
                 self.nextPage = characters3.nextPage
                 state3 = .loaded3
             } else {
-                guard let nextPage = self.nextPage else { hasMorePages = false; return }
+                guard let nextPage = self.nextPage else {
+                    hasMorePages = false
+                    return
+                }
                 if isLoadingNextPage && hasMorePages {
-                    let nextPageResponse = try await loadAndSortCharactersUseCase.execute(page: nextPage)
-                    self.characters3.characters.append(contentsOf: nextPageResponse.characters)
+                    let nextPageResponse =
+                        try await loadAndSortCharactersUseCase.execute(
+                            page: nextPage
+                        )
+                    self.characters3.characters.append(
+                        contentsOf: nextPageResponse.characters
+                    )
                     self.nextPage = nextPageResponse.nextPage
                     self.hasMorePages = nextPageResponse.nextPage != nil
                     state3 = .loaded3
@@ -74,8 +87,9 @@ final class CharacterViewModel3 {
             // URLSession cancelada. Idem.
         } catch let apiError as APIError3 {
             if case .general(let underlying) = apiError,
-               (underlying is CancellationError) ||
-               ((underlying as? URLError)?.code == .cancelled) {
+                (underlying is CancellationError)
+                    || ((underlying as? URLError)?.code == .cancelled)
+            {
                 return
             }
             errorMsg3 = apiError.localizedDescription
@@ -90,5 +104,5 @@ final class CharacterViewModel3 {
             state3 = .empty3
         }
     }
-    
+
 }

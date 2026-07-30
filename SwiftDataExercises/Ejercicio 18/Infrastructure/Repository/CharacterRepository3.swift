@@ -7,14 +7,31 @@
 
 import Foundation
 
+enum DataSource {
+    case remote
+    case local
+}
+
 final class CharacterRepository3: CharacterRepository3Protocol {
-    private let service3: any CharacterService3
-    
-    init(service3: any CharacterService3) {
-        self.service3 = service3
+    private let remoteService: any CharacterService3
+    private let localService: any CharacterService3
+    private let dataSource: DataSource
+
+    init(
+        remoteService: any CharacterService3,
+        localService: any CharacterService3,
+        dataSource: DataSource
+    ) {
+        self.remoteService = remoteService
+        self.localService = localService
+        self.dataSource = dataSource
     }
 
     func loadCharacters3(page: Int) async throws -> CharacterPage3 {
-        try await service3.loadCharacters3(page: page)
+        do {
+            return try await remoteService.loadCharacters3(page: page)
+        } catch {
+            return try await localService.loadCharacters3(page: page)
+        }
     }
 }
