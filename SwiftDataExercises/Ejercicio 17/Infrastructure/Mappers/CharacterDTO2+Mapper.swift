@@ -10,7 +10,7 @@ import Foundation
 extension CharacterDTO2 {
     func toDomain() -> Character2 {
         Character2(
-            id: UUID(),
+            id: id,
             name: name,
             status: status,
             species: species,

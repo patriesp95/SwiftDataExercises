@@ -8,7 +8,7 @@
 import Foundation
 
 struct Character2: Identifiable {
-    let id: UUID
+    let id: Int
     let name: String
     let status: String
     let species: String
@@ -19,7 +19,7 @@ struct Character2: Identifiable {
 #if DEBUG
     extension Character2 {
         static let test2 = Character2(
-            id: UUID(),
+            id: 1,
             name: "Rick Sanchez",
             status: "Alive",
             species: "Human",

@@ -17,7 +17,7 @@ struct CharacterPage {
         static let characterPageTest2 = CharacterPage(
             characters: [
                 Character2(
-                    id: UUID(),
+                    id: 1,
                     name: "Rick Sanchez",
                     status: "Alive",
                     species: "Human",
