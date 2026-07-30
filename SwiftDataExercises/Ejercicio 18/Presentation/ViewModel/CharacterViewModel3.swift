@@ -71,9 +71,10 @@ final class CharacterViewModel3 {
                         try await loadAndSortCharactersUseCase.execute(
                             page: nextPage
                         )
-                    self.characters3.characters.append(
-                        contentsOf: nextPageResponse.characters
-                    )
+                    // Solución: usar map + filter para evitar duplicados y mantener orden
+                    let existingIDs = Set(self.characters3.characters.map { $0.id })
+                    let merged = self.characters3.characters + nextPageResponse.characters.filter { !existingIDs.contains($0.id) }
+                    self.characters3.characters = merged
                     self.nextPage = nextPageResponse.nextPage
                     self.hasMorePages = nextPageResponse.nextPage != nil
                     state3 = .loaded3
