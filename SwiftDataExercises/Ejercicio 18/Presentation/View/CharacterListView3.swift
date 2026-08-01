@@ -15,12 +15,12 @@ struct CharacterListView3: View {
 
         NavigationStack {
             Group {
-                switch vm3.state3 {
-                case .loading3:
+                switch vm3.loadingState {
+                case .loading, .idle:
                     ProgressView()
-                case .loaded3:
+                case .loaded(let characters):
                     List {
-                        ForEach(vm3.characters3.characters) { character in
+                        ForEach(characters) { character in
                             NavigationLink {
                                 CharacterDetailView3(character)
                             } label: {
@@ -47,8 +47,10 @@ struct CharacterListView3: View {
                             }
                         }
                     }
-                case .empty3:
+                case .empty:
                     ListEmptyView3()
+                case .error(let error):
+                    Text(error)
                 }
             }
             .navigationTitle("Characters")

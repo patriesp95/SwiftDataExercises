@@ -7,12 +7,6 @@
 
 import Foundation
 
-enum ViewState3 {
-    case loading3
-    case loaded3
-    case empty3
-}
-
 @Observable @MainActor
 final class CharacterViewModel3 {
 
@@ -20,7 +14,7 @@ final class CharacterViewModel3 {
 
     var characters3: CharacterPage3 = .characterPagResponseEmpty3
 
-    var state3: ViewState3 = .loading3
+    var loadingState: LoadingState<[Character3]> = .loading
 
     var isLoadingInitialPage = false
     var isLoadingNextPage = false
@@ -52,14 +46,14 @@ final class CharacterViewModel3 {
 
     func getCharacters3() async {
         if isLoadingInitialPage {
-            state3 = .loading3
+            loadingState = .loading
         }
         do {
             if isLoadingInitialPage {
                 self.characters3 =
                     try await loadAndSortCharactersUseCase.execute(page: 1)
                 self.nextPage = characters3.nextPage
-                state3 = .loaded3
+                loadingState = .loaded(characters3.characters)
             } else {
                 guard let nextPage = self.nextPage else {
                     hasMorePages = false
@@ -76,9 +70,9 @@ final class CharacterViewModel3 {
                     self.characters3.characters = merged
                     self.nextPage = nextPageResponse.nextPage
                     self.hasMorePages = nextPageResponse.nextPage != nil
-                    state3 = .loaded3
+                    loadingState = .loaded(characters3.characters)
                 } else if isLoadingNextPage && !hasMorePages {
-                    state3 = .loaded3
+                    loadingState = .loaded(characters3.characters)
                 }
             }
         } catch is CancellationError {
@@ -101,7 +95,7 @@ final class CharacterViewModel3 {
         }
 
         if characters3.characters.isEmpty {
-            state3 = .empty3
+            loadingState = .empty
         }
     }
 
