@@ -20,13 +20,13 @@ extension APIClient3 {
         let (data, response) = try await session3.getData3(for: request)
 
         guard 200..<300 ~= response.statusCode else {
-            throw APIError3.httpError(response.statusCode)
+            throw NetworkError.httpStatus(code: response.statusCode)
         }
 
         do {
             return try decoder.decode(type, from: data)
         } catch {
-            throw APIError3.json(error)
+            throw NetworkError.decodingFailed(error)
         }
     }
 }

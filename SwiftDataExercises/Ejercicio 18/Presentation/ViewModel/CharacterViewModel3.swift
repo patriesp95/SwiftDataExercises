@@ -85,8 +85,8 @@ final class CharacterViewModel3 {
             // La Task fue cancelada por SwiftUI (p.ej. la vista se destruyó). No es un error del usuario.
         } catch let urlError as URLError where urlError.code == .cancelled {
             // URLSession cancelada. Idem.
-        } catch let apiError as APIError3 {
-            if case .general(let underlying) = apiError,
+        } catch let apiError as NetworkError {
+            if case .unknown(let underlying) = apiError,
                 (underlying is CancellationError)
                     || ((underlying as? URLError)?.code == .cancelled)
             {

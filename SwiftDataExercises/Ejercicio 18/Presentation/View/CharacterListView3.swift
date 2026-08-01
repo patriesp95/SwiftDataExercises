@@ -92,7 +92,7 @@ struct CharacterListView3: View {
                             session3: .shared
                         ),
                         localService: BundleCharacterService3(),
-                        CharacterDataSource: .remote
+                        characterDataSource: .remote
                     )
                 )
             )
