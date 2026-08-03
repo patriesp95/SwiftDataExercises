@@ -33,7 +33,7 @@ final class CharacterRepository3: CharacterRepository3Protocol {
                 do {
                     return try await remoteService.loadCharacters3(page: page)
                 } catch {
-                    return try await localService.loadCharacters3(page: page)
+                    throw NetworkErrorMapper.map(error)
                 }
             case .local:
                 return try await localService.loadCharacters3(page: page)

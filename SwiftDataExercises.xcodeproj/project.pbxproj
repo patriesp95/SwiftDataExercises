@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		B3ED02ED3020765100A0F4EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B30340CF301307460000A96A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B30340D6301307460000A96A;
+			remoteInfo = SwiftDataExercises;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		B30340D7301307460000A96A /* SwiftDataExercises.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDataExercises.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3ED02E93020765100A0F4EC /* SwiftDataExercisesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftDataExercisesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +27,22 @@
 			path = SwiftDataExercises;
 			sourceTree = "<group>";
 		};
+		B3ED02EA3020765100A0F4EC /* SwiftDataExercisesTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SwiftDataExercisesTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B30340D4301307460000A96A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3ED02E63020765100A0F4EC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				B30340D9301307460000A96A /* SwiftDataExercises */,
+				B3ED02EA3020765100A0F4EC /* SwiftDataExercisesTests */,
 				B30340D8301307460000A96A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				B30340D7301307460000A96A /* SwiftDataExercises.app */,
+				B3ED02E93020765100A0F4EC /* SwiftDataExercisesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +95,29 @@
 			productReference = B30340D7301307460000A96A /* SwiftDataExercises.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B3ED02E83020765100A0F4EC /* SwiftDataExercisesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B3ED02F13020765100A0F4EC /* Build configuration list for PBXNativeTarget "SwiftDataExercisesTests" */;
+			buildPhases = (
+				B3ED02E53020765100A0F4EC /* Sources */,
+				B3ED02E63020765100A0F4EC /* Frameworks */,
+				B3ED02E73020765100A0F4EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B3ED02EE3020765100A0F4EC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B3ED02EA3020765100A0F4EC /* SwiftDataExercisesTests */,
+			);
+			name = SwiftDataExercisesTests;
+			packageProductDependencies = (
+			);
+			productName = SwiftDataExercisesTests;
+			productReference = B3ED02E93020765100A0F4EC /* SwiftDataExercisesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -82,6 +130,10 @@
 				TargetAttributes = {
 					B30340D6301307460000A96A = {
 						CreatedOnToolsVersion = 26.5;
+					};
+					B3ED02E83020765100A0F4EC = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = B30340D6301307460000A96A;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				B30340D6301307460000A96A /* SwiftDataExercises */,
+				B3ED02E83020765100A0F4EC /* SwiftDataExercisesTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B30340D5301307460000A96A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3ED02E73020765100A0F4EC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B3ED02E53020765100A0F4EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B3ED02EE3020765100A0F4EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B30340D6301307460000A96A /* SwiftDataExercises */;
+			targetProxy = B3ED02ED3020765100A0F4EC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B30340E0301307470000A96A /* Debug */ = {
@@ -310,6 +385,58 @@
 			};
 			name = Release;
 		};
+		B3ED02EF3020765100A0F4EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3M6YJP64GV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patriespert.SwiftDataExercisesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftDataExercises.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftDataExercises";
+				XROS_DEPLOYMENT_TARGET = 26.5;
+			};
+			name = Debug;
+		};
+		B3ED02F03020765100A0F4EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3M6YJP64GV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patriespert.SwiftDataExercisesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftDataExercises.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftDataExercises";
+				XROS_DEPLOYMENT_TARGET = 26.5;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -327,6 +454,15 @@
 			buildConfigurations = (
 				B30340E3301307470000A96A /* Debug */,
 				B30340E4301307470000A96A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B3ED02F13020765100A0F4EC /* Build configuration list for PBXNativeTarget "SwiftDataExercisesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3ED02EF3020765100A0F4EC /* Debug */,
+				B3ED02F03020765100A0F4EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

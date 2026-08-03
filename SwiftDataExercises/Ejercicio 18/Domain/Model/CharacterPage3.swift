@@ -26,6 +26,28 @@ struct CharacterPage3 {
                         string:
                             "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
                     )
+                ),
+                Character3(
+                    id: 2,
+                    name: "Morty Smith",
+                    status: "Alive",
+                    species: "Human",
+                    gender: "Male",
+                    imageURL: URL(
+                        string:
+                            "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
+                    )
+                ),
+                Character3(
+                    id: 183,
+                    name: "Johnny Depp",
+                    status: "Alive",
+                    species: "Human",
+                    gender: "Male",
+                    imageURL: URL(
+                        string:
+                            "https://rickandmortyapi.com/api/character/avatar/183.jpeg"
+                    )
                 )
             ],
             nextPage: 2

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Character3: Identifiable, Decodable {
+struct Character3: Identifiable, Decodable, Equatable {
     let id: Int
     let name: String
     let status: String
@@ -29,5 +29,41 @@ struct Character3: Identifiable, Decodable {
                     "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
             )
         )
+
+        static let test3List: [Character3] = [
+            Character3(
+                id: 1,
+                name: "Rick Sanchez",
+                status: "Alive",
+                species: "Human",
+                gender: "Male",
+                imageURL: URL(
+                    string:
+                        "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+                )
+            ),
+            Character3(
+                id: 2,
+                name: "Morty Smith",
+                status: "Alive",
+                species: "Human",
+                gender: "Male",
+                imageURL: URL(
+                    string:
+                        "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
+                )
+            ),
+            Character3(
+                id: 183,
+                name: "Johnny Depp",
+                status: "Alive",
+                species: "Human",
+                gender: "Male",
+                imageURL: URL(
+                    string:
+                        "https://rickandmortyapi.com/api/character/avatar/183.jpeg"
+                )
+            )
+        ]
     }
 #endif

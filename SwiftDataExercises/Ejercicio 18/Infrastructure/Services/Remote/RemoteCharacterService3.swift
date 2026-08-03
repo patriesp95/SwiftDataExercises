@@ -18,7 +18,8 @@ struct RemoteCharacterService3: CharacterService3, APIClient3 {
             )
             return dto.toDomain()
         } catch {
-            throw NetworkError.unknown(error)
+            print(error)
+            throw NetworkErrorMapper.map(error)
         }
     }
 }
