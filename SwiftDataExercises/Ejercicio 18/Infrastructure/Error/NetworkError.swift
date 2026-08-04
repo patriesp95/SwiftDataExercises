@@ -72,7 +72,6 @@ enum NetworkError: Error, LocalizedError {
     }
         
     var errorDescription: String? { userMessage }
-
 }
 
 enum NetworkErrorMapper {

@@ -29,14 +29,27 @@ final class CharacterRepository3: CharacterRepository3Protocol {
 
     func loadCharacters3(page: Int) async throws -> CharacterPage3 {
         switch characterDataSource {
-            case .remote:
+        case .remote:
+            do {
+                return try await remoteService.loadCharacters3(page: page)
+            } catch let remoteError {
                 do {
-                    return try await remoteService.loadCharacters3(page: page)
-                } catch {
-                    throw NetworkErrorMapper.map(error)
+                    return try await localService.loadCharacters3(page: page)
+                } catch let localError {
+                    throw RepositoryError.fallbackFailed(
+                        remote: NetworkErrorMapper.map(remoteError),
+                        local: StorageErrorMapper.map(localError)
+                    )
                 }
-            case .local:
-                return try await localService.loadCharacters3(page: page)
             }
+        case .local:
+            do {
+                return try await localService.loadCharacters3(page: page)
+            } catch {
+                throw RepositoryError.local(
+                    StorageErrorMapper.map(error)
+                )
+            }
+        }
     }
 }
