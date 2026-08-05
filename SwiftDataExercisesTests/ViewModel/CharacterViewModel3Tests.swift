@@ -23,7 +23,9 @@ struct CharacterViewModel3Tests {
         
         //When
         
+        sut.isLoadingInitialPage = true
         let _ = await sut.getCharacters3()
+        sut.isLoadingInitialPage = false
         
         //Then
         switch sut.loadingState {
