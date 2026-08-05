@@ -24,7 +24,7 @@ final class CharacterViewModel3 {
     var showError3 = false
     var errorMsg3 = ""
 
-    init(loadAndSortCharactersUseCase: LoadAndSortCharactersUseCase3) {
+    init(loadAndSortCharactersUseCase: LoadAndSortCharactersUseCase3Protocol) {
         self.loadAndSortCharactersUseCase = loadAndSortCharactersUseCase
     }
 
