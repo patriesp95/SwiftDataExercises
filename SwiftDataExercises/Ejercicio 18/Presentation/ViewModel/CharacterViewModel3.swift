@@ -18,8 +18,8 @@ final class CharacterViewModel3 {
 
     var isLoadingInitialPage = false
     var isLoadingNextPage = false
-    var hasMorePages = false
-    private var nextPage: Int? = 1
+    var hasMorePages = true
+    private var nextPage: Int?
 
     var showError3 = false
     var errorMsg3 = ""
@@ -50,13 +50,15 @@ final class CharacterViewModel3 {
         }
         do {
             if isLoadingInitialPage {
-                self.characters3 =
-                    try await loadAndSortCharactersUseCase.execute(page: 1)
+                self.characters3 = try await loadAndSortCharactersUseCase.execute(page: 1)
                 self.nextPage = characters3.nextPage
-                loadingState = .loaded(characters3.characters)
+                self.hasMorePages = characters3.nextPage != nil
+                loadingState = characters3.characters.isEmpty ? .empty : .loaded(characters3.characters)
+                return
             } else {
                 guard let nextPage = self.nextPage else {
                     hasMorePages = false
+                    loadingState = characters3.characters.isEmpty ? .empty : .loaded(characters3.characters)
                     return
                 }
                 if isLoadingNextPage && hasMorePages {
@@ -65,13 +67,19 @@ final class CharacterViewModel3 {
                             page: nextPage
                         )
                     // Solución: usar map + filter para evitar duplicados y mantener orden
-                    let existingIDs = Set(self.characters3.characters.map { $0.id })
-                    let merged = self.characters3.characters + nextPageResponse.characters.filter { !existingIDs.contains($0.id) }
+                    let existingIDs = Set(
+                        self.characters3.characters.map { $0.id }
+                    )
+                    let merged =
+                        self.characters3.characters
+                        + nextPageResponse.characters.filter {
+                            !existingIDs.contains($0.id)
+                        }
                     self.characters3.characters = merged
                     self.nextPage = nextPageResponse.nextPage
                     self.hasMorePages = nextPageResponse.nextPage != nil
                     loadingState = .loaded(characters3.characters)
-                } else if isLoadingNextPage && !hasMorePages {
+                } else if !isLoadingNextPage && !hasMorePages {
                     loadingState = .loaded(characters3.characters)
                 }
             }
@@ -94,9 +102,21 @@ final class CharacterViewModel3 {
             showError3 = true
         }
 
-        if characters3.characters.isEmpty {
+        if characters3.characters.isEmpty && !isLoadingNextPage
+            && !isLoadingInitialPage
+        {
             loadingState = .empty
         }
+
+    }
+
+    func resetForInitialLoad() {
+        characters3 = .characterPagResponseEmpty3
+        nextPage = nil
+        hasMorePages = true
+        showError3 = false
+        errorMsg3 = ""
+        isLoadingInitialPage = true
     }
 
 }

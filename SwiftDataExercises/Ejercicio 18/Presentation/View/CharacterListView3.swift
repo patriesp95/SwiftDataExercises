@@ -55,16 +55,8 @@ struct CharacterListView3: View {
             }
             .navigationTitle("Characters")
             .refreshable {
-                guard !vm3.isLoadingInitialPage, !vm3.isLoadingNextPage else {
-                    return
-                }
-                vm3.characters3.characters = []
-                vm3.hasMorePages = true
-                vm3.showError3 = false
-                vm3.errorMsg3 = ""
-                vm3.isLoadingInitialPage = true
+                vm3.resetForInitialLoad()
                 await vm3.getCharacters3()
-                vm3.isLoadingInitialPage = false
             }
             .alert("Error", isPresented: $vm3.showError3) {
                 Button("OK", role: .cancel) {}
