@@ -7,33 +7,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7F219C45-75CC-44C8-BCBC-5618B09C078E"
+            uuid = "AFE5FC6B-E66A-4928-95CA-13EE33B5749D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwiftDataExercises/Ejercicio 18/Infrastructure/Services/Remote/RemoteCharacterService3.swift"
+            filePath = "SwiftDataExercises/Ejercicio 18/Presentation/View/CharacterListView3.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "loadCharacters3(page:)"
-            landmarkType = "7">
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6BA41C30-6ADD-4509-89FC-5851E8FECFC8"
+            uuid = "DFB156AF-50E6-49E0-B830-0B7F31644A40"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwiftDataExercises/Ejercicio 18/Infrastructure/Error/NetworkError.swift"
+            filePath = "SwiftDataExercises/Ejercicio 18/Presentation/View/CharacterListView3.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "map(_:)"
-            landmarkType = "7">
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
