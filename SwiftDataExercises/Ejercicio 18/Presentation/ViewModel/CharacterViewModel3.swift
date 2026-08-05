@@ -10,7 +10,7 @@ import Foundation
 @Observable @MainActor
 final class CharacterViewModel3 {
 
-    let loadAndSortCharactersUseCase: LoadAndSortCharactersUseCase3
+    let loadAndSortCharactersUseCase: LoadAndSortCharactersUseCase3Protocol
 
     var characters3: CharacterPage3 = .characterPagResponseEmpty3
 
