@@ -43,7 +43,7 @@ struct CharacterViewModel3Tests {
         
         //When
         await sut.loadInitial()
-        
+
         //Then
         switch sut.loadingState {
             case .loaded(let characters):
@@ -70,7 +70,7 @@ struct CharacterViewModel3Tests {
         
         //When
         await sut.loadInitial()
-        
+
         //Then
         switch sut.loadingState {
             case .empty:
@@ -82,5 +82,24 @@ struct CharacterViewModel3Tests {
         
         #expect(useCase.callCount == 1)
         #expect(useCase.receivedPage == 1)
+    }
+    
+    @Test("ViewModel shows an error during initial loading")
+    func showsAnErrorDuringInitialLoadingOfCharacters() async throws {
+        
+        //Given
+        let useCase = MockLoadAndSortCharactersUseCase3(result: .failure(RepositoryError.noDataAvailable))
+        let sut = CharacterViewModel3(loadAndSortCharactersUseCase: useCase)
+        let expectedCharacters = CharacterPage3.characterPagResponseEmpty3.characters
+        
+        //When
+        await sut.loadInitial()
+
+        //Then
+        #expect(sut.characters3.characters == expectedCharacters)
+        #expect(sut.isLoadingInitialPage == false)
+        #expect(!sut.errorMsg3.isEmpty)
+        #expect(sut.showError3 == true)
+        #expect(useCase.callCount == 1)
     }
 }
