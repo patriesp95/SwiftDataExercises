@@ -11,19 +11,23 @@ import Foundation
 
 @MainActor
 final class MockLoadAndSortCharactersUseCase3: LoadAndSortCharactersUseCase3Protocol {
-    
+
     private(set) var callCount = 0
-    private(set) var receivedPage: Int?
-    private(set) var result: Result<CharacterPage3, Error>
-    
-    init(result: Result<CharacterPage3, Error>) {
-        self.result = result
+    private(set) var receivedPages: [Int] = []
+    var results: [Result<CharacterPage3, Error>]
+
+    init(results: [Result<CharacterPage3, Error>]) {
+        self.results = results
     }
-    
-    func execute(page: Int) async throws -> SwiftDataExercises.CharacterPage3 {
-        callCount += 1
-        receivedPage = page
+
+    convenience init(result: Result<CharacterPage3, Error>) {
+        self.init(results: [result])
+    }
+
+    func execute(page: Int) async throws -> CharacterPage3 {
+        receivedPages.append(page)
+        defer { callCount += 1 }
+        let result = results[min(callCount, results.count - 1)]
         return try result.get()
     }
-    
 }

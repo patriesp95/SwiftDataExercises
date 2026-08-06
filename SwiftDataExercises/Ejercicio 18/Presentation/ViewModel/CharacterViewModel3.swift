@@ -19,7 +19,7 @@ final class CharacterViewModel3 {
     private(set) var isLoadingInitialPage = false
     private(set) var isLoadingNextPage = false
     private(set) var hasMorePages = true
-    private var nextPage: Int?
+    private(set) var nextPage: Int?
 
     var showError3 = false
     var errorMsg3 = ""

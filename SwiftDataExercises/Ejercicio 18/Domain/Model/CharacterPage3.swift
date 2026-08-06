@@ -58,5 +58,55 @@ struct CharacterPage3 {
                 characters: [],
                 nextPage: nil
             )
+        
+        static let characterPageTest3Page2 = CharacterPage3(
+            characters: [
+                Character3(
+                    id: 1,
+                    name: "Rick Sanchez",
+                    status: "Alive",
+                    species: "Human",
+                    gender: "Male",
+                    imageURL: URL(
+                        string:
+                            "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+                    )
+                ),
+                Character3(
+                    id: 2,
+                    name: "Morty Smith",
+                    status: "Alive",
+                    species: "Human",
+                    gender: "Male",
+                    imageURL: URL(
+                        string:
+                            "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
+                    )
+                ),
+                Character3(
+                    id: 183,
+                    name: "Johnny Depp",
+                    status: "Alive",
+                    species: "Human",
+                    gender: "Male",
+                    imageURL: URL(
+                        string:
+                            "https://rickandmortyapi.com/api/character/avatar/183.jpeg"
+                    )
+                ),
+                Character3(
+                    id: 5,
+                    name: "Jerry Smith",
+                    status: "Alive",
+                    species: "Human",
+                    gender: "Male",
+                    imageURL: URL(
+                        string:
+                            "https://rickandmortyapi.com/api/character/avatar/5.jpeg"
+                    )
+                )
+            ],
+            nextPage: 3
+        )
     }
 #endif

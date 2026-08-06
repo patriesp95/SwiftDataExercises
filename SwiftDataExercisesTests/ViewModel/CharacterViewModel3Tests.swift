@@ -57,9 +57,9 @@ struct CharacterViewModel3Tests {
         }
         
         #expect(useCase.callCount == 1)
-        #expect(useCase.receivedPage == 1)
+        #expect(useCase.receivedPages == [1])
     }
-    
+
     @Test("ViewModel shows empty state when use case returns no characters")
     func showsEmptyStateWhenUseCaseReturnsNoCharacters() async throws {
         
@@ -81,9 +81,9 @@ struct CharacterViewModel3Tests {
         }
         
         #expect(useCase.callCount == 1)
-        #expect(useCase.receivedPage == 1)
+        #expect(useCase.receivedPages == [1])
     }
-    
+
     @Test("ViewModel shows an error during initial loading")
     func showsAnErrorDuringInitialLoadingOfCharacters() async throws {
         
@@ -101,5 +101,29 @@ struct CharacterViewModel3Tests {
         #expect(!sut.errorMsg3.isEmpty)
         #expect(sut.showError3 == true)
         #expect(useCase.callCount == 1)
+    }
+    
+    @Test("ViewModel shows nextpage when usecase receives it")
+    func showsNextpageWhenUsecaseReceivesIt() async throws {
+        
+        //Given
+        let useCase = MockLoadAndSortCharactersUseCase3(results: [
+            .success(.characterPageTest3),
+            .success(.characterPageTest3Page2)
+        ])
+        let sut = CharacterViewModel3(loadAndSortCharactersUseCase: useCase)
+        let existingIDs = Set(CharacterPage3.characterPageTest3.characters.map { $0.id })
+        let expected = CharacterPage3.characterPageTest3.characters
+            + CharacterPage3.characterPageTest3Page2.characters.filter { !existingIDs.contains($0.id) }
+
+        //When
+        await sut.loadInitial()
+        await sut.loadNextPage()
+
+        //Then
+        #expect(sut.characters3.characters == expected)
+        #expect(sut.nextPage == 3)
+        #expect(useCase.callCount == 2)
+        #expect(useCase.receivedPages == [1, 2])
     }
 }
