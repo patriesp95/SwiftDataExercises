@@ -12,13 +12,13 @@ final class CharacterViewModel3 {
 
     let loadAndSortCharactersUseCase: LoadAndSortCharactersUseCase3Protocol
 
-    var characters3: CharacterPage3 = .characterPagResponseEmpty3
+    private(set) var characters3: CharacterPage3 = .characterPagResponseEmpty3
 
-    var loadingState: LoadingState<[Character3]> = .loading
+    var loadingState: LoadingState<[Character3]> = .idle
 
-    var isLoadingInitialPage = false
-    var isLoadingNextPage = false
-    var hasMorePages = true
+    private(set) var isLoadingInitialPage = false
+    private(set) var isLoadingNextPage = false
+    private(set) var hasMorePages = true
     private var nextPage: Int?
 
     var showError3 = false
@@ -44,79 +44,77 @@ final class CharacterViewModel3 {
         )
     }
 
-    func getCharacters3() async {
-        if isLoadingInitialPage {
-            loadingState = .loading
-        }
+    func loadInitial() async {
+        guard !isLoadingInitialPage else { return }
+        resetState()
+        isLoadingInitialPage = true
+        loadingState = .loading
+        defer { isLoadingInitialPage = false }
+
         do {
-            if isLoadingInitialPage {
-                self.characters3 = try await loadAndSortCharactersUseCase.execute(page: 1)
-                self.nextPage = characters3.nextPage
-                self.hasMorePages = characters3.nextPage != nil
-                loadingState = characters3.characters.isEmpty ? .empty : .loaded(characters3.characters)
-                return
-            } else {
-                guard let nextPage = self.nextPage else {
-                    hasMorePages = false
-                    loadingState = characters3.characters.isEmpty ? .empty : .loaded(characters3.characters)
-                    return
-                }
-                if isLoadingNextPage && hasMorePages {
-                    let nextPageResponse =
-                        try await loadAndSortCharactersUseCase.execute(
-                            page: nextPage
-                        )
-                    // Solución: usar map + filter para evitar duplicados y mantener orden
-                    let existingIDs = Set(
-                        self.characters3.characters.map { $0.id }
-                    )
-                    let merged =
-                        self.characters3.characters
-                        + nextPageResponse.characters.filter {
-                            !existingIDs.contains($0.id)
-                        }
-                    self.characters3.characters = merged
-                    self.nextPage = nextPageResponse.nextPage
-                    self.hasMorePages = nextPageResponse.nextPage != nil
-                    loadingState = .loaded(characters3.characters)
-                } else if !isLoadingNextPage && !hasMorePages {
-                    loadingState = .loaded(characters3.characters)
-                }
-            }
-        } catch is CancellationError {
-            // La Task fue cancelada por SwiftUI (p.ej. la vista se destruyó). No es un error del usuario.
-        } catch let urlError as URLError where urlError.code == .cancelled {
-            // URLSession cancelada. Idem.
-        } catch let apiError as NetworkError {
-            if case .unknown(let underlying) = apiError,
-                (underlying is CancellationError)
-                    || ((underlying as? URLError)?.code == .cancelled)
-            {
-                return
-            }
-            errorMsg3 = apiError.localizedDescription
-            showError3 = true
+            let page = try await loadAndSortCharactersUseCase.execute(page: 1)
+            characters3 = page
+            nextPage = page.nextPage
+            hasMorePages = page.nextPage != nil
+            loadingState =
+                page.characters.isEmpty ? .empty : .loaded(page.characters)
         } catch {
-            print(error.localizedDescription)
-            errorMsg3 = error.localizedDescription
-            showError3 = true
+            handle(error: error)
         }
-
-        if characters3.characters.isEmpty && !isLoadingNextPage
-            && !isLoadingInitialPage
-        {
-            loadingState = .empty
-        }
-
     }
 
-    func resetForInitialLoad() {
+    func loadNextPage() async {
+        guard hasMorePages,
+            !isLoadingNextPage,
+            !isLoadingInitialPage,
+            let nextPage
+        else { return }
+
+        isLoadingNextPage = true
+        defer { isLoadingNextPage = false }
+
+        do {
+            let response = try await loadAndSortCharactersUseCase.execute(
+                page: nextPage
+            )
+            let existingIDs = Set(characters3.characters.map { $0.id })
+            let merged =
+                characters3.characters
+                + response.characters.filter { !existingIDs.contains($0.id) }
+            characters3.characters = merged
+            self.nextPage = response.nextPage
+            hasMorePages = response.nextPage != nil
+            loadingState = .loaded(characters3.characters)
+        } catch {
+            handle(error: error)
+        }
+    }
+
+    private func resetState() {
         characters3 = .characterPagResponseEmpty3
         nextPage = nil
         hasMorePages = true
         showError3 = false
         errorMsg3 = ""
-        isLoadingInitialPage = true
     }
 
+    private func handle(error: Error) {
+        if error is CancellationError { return }
+        if let urlError = error as? URLError, urlError.code == .cancelled {
+            return
+        }
+        if let apiError = error as? NetworkError,
+            case .unknown(let underlying) = apiError,
+            (underlying is CancellationError)
+                || ((underlying as? URLError)?.code == .cancelled)
+        {
+            return
+        }
+        errorMsg3 = error.localizedDescription
+        showError3 = true
+
+        if characters3.characters.isEmpty {
+            loadingState = .empty
+        }
+    }
 }

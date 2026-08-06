@@ -29,14 +29,9 @@ struct CharacterListView3: View {
                             .task {
                                 guard
                                     character.id
-                                        == vm3.characters3.characters.last?.id,
-                                    vm3.hasMorePages,
-                                    !vm3.isLoadingNextPage,
-                                    !vm3.isLoadingInitialPage
+                                        == vm3.characters3.characters.last?.id
                                 else { return }
-                                vm3.isLoadingNextPage = true
-                                await vm3.getCharacters3()
-                                vm3.isLoadingNextPage = false
+                                await vm3.loadNextPage()
                             }
                         }
                         if vm3.isLoadingNextPage {
@@ -55,8 +50,7 @@ struct CharacterListView3: View {
             }
             .navigationTitle("Characters")
             .refreshable {
-                vm3.resetForInitialLoad()
-                await vm3.getCharacters3()
+                await vm3.loadInitial()
             }
             .alert("Error", isPresented: $vm3.showError3) {
                 Button("OK", role: .cancel) {}
@@ -65,13 +59,8 @@ struct CharacterListView3: View {
             }
         }
         .task(priority: .high) {
-            guard vm3.characters3.characters.isEmpty,
-                !vm3.isLoadingInitialPage,
-                !vm3.isLoadingNextPage
-            else { return }
-            vm3.isLoadingInitialPage = true
-            await vm3.getCharacters3()
-            vm3.isLoadingInitialPage = false
+            guard vm3.characters3.characters.isEmpty else { return }
+            await vm3.loadInitial()
         }
     }
 }
