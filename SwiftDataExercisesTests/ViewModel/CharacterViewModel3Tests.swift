@@ -13,8 +13,8 @@ import Testing
 @MainActor
 struct CharacterViewModel3Tests {
 
-    @Test("Initial loading")
-    func initialLoading() async throws {
+    @Test("Initial loading works")
+    func initialLoadingWorks() async throws {
         
         //Given
         let useCase = MockLoadAndSortCharactersUseCase3(result: .success(.characterPageTest3))
