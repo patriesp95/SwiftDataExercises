@@ -59,4 +59,28 @@ struct CharacterViewModel3Tests {
         #expect(useCase.callCount == 1)
         #expect(useCase.receivedPage == 1)
     }
+    
+    @Test("ViewModel shows empty state when use case returns no characters")
+    func showsEmptyStateWhenUseCaseReturnsNoCharacters() async throws {
+        
+        //Given
+        let useCase = MockLoadAndSortCharactersUseCase3(result: .success(.characterPagResponseEmpty3))
+        let sut = CharacterViewModel3(loadAndSortCharactersUseCase: useCase)
+        let expectedCharacters = CharacterPage3.characterPagResponseEmpty3.characters
+        
+        //When
+        await sut.loadInitial()
+        
+        //Then
+        switch sut.loadingState {
+            case .empty:
+                #expect(expectedCharacters == [])
+                #expect(sut.characters3.nextPage == nil)
+            default:
+                Issue.record("Expected loadingState to be .empty, got: \(sut.loadingState)")
+        }
+        
+        #expect(useCase.callCount == 1)
+        #expect(useCase.receivedPage == 1)
+    }
 }
