@@ -126,4 +126,25 @@ struct CharacterViewModel3Tests {
         #expect(useCase.callCount == 2)
         #expect(useCase.receivedPages == [1, 2])
     }
+    
+    @Test("ViewModel shows lastpage")
+    func showsLastPage() async throws {
+        
+        //Given
+        let useCase = MockLoadAndSortCharactersUseCase3(result: .success(.characterPageTest3EOF))
+        let sut = CharacterViewModel3(loadAndSortCharactersUseCase: useCase)
+        let expectedCharacters = CharacterPage3.characterPageTest3EOF.characters
+        
+
+        //When
+        await sut.loadInitial()
+        await sut.loadNextPage()
+
+        //Then
+        #expect(sut.characters3.characters == expectedCharacters)
+        #expect(sut.hasMorePages == false)
+        #expect(sut.nextPage == nil)
+        #expect(useCase.callCount == 1)
+        #expect(useCase.receivedPages == [1])
+    }
 }
