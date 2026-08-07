@@ -19,6 +19,8 @@ struct APIClientTests {
     private let myRequest = URLRequest.get3(
         url: CharacterEndpoint3.getCharacters3Paginated(page: 1)
     )
+    
+    //MARK: 1. Respuesta 200 OK
 
     @Test("Response 200 OK decodes the payload")
     func response200() async throws {
@@ -46,6 +48,8 @@ struct APIClientTests {
         )
         #expect(!characterResponse.results.isEmpty)
     }
+    
+    //MARK: 2. Error 404
     
     @Test("Error 404 is thrown")
     func responseError404() async throws {
@@ -79,6 +83,8 @@ struct APIClientTests {
             }
         }
     }
+    
+    //MARK: 3. Error 500
     
     @Test("Error 500 is thrown")
     func responseError500() async throws {
