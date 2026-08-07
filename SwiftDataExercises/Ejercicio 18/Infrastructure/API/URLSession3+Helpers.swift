@@ -7,7 +7,13 @@
 
 import Foundation
 
-extension URLSession {
+protocol URLSessionProtocol {
+    func getData3(for request: URLRequest) async throws(NetworkError) -> (
+        data: Data, response: HTTPURLResponse)
+}
+
+
+extension URLSession: URLSessionProtocol {
     func getData3(for request: URLRequest) async throws(NetworkError) -> (data: Data, response: HTTPURLResponse) {
         do {
             let (data, response) = try await data(for: request)
@@ -22,3 +28,10 @@ extension URLSession {
         }
     }
 }
+
+
+#if DEBUG
+    extension URLSession {
+       
+    }
+#endif

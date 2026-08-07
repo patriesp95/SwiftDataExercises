@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CharacterDTO3: Decodable, Identifiable {
+struct CharacterDTO3: Decodable, Identifiable, Equatable {
     let id: Int
     let name: String
     let status: String

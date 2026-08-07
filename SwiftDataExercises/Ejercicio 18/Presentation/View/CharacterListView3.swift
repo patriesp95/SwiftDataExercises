@@ -72,7 +72,7 @@ struct CharacterListView3: View {
                 loadAndSortCharactersUseCase: LoadAndSortCharactersUseCase3(
                     repository: CharacterRepository3(
                         remoteService: RemoteCharacterService3(
-                            session3: .shared
+                            session3: URLSession.shared
                         ),
                         localService: BundleCharacterService3(),
                         characterDataSource: .remote

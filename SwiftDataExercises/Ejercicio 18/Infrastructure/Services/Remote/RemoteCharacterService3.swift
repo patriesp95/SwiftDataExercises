@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct RemoteCharacterService3: CharacterService3, APIClient3 {
-    let session3: URLSession
+struct RemoteCharacterService3: CharacterService3, APIClient3 {    
+    let session3: URLSessionProtocol
     
     func loadCharacters3(page: Int) async throws -> CharacterPage3 {
         do {

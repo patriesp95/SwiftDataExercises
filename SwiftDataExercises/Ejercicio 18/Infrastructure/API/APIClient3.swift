@@ -8,7 +8,7 @@
 import Foundation
 
 protocol APIClient3 {
-    var session3: URLSession { get }
+    var session3: URLSessionProtocol { get }
 }
 
 extension APIClient3 {
