@@ -16,6 +16,11 @@ final class MockLoadAndSortCharactersUseCase3: LoadAndSortCharactersUseCase3Prot
     private(set) var receivedPages: [Int] = []
     var results: [Result<CharacterPage3, Error>]
 
+    private var isGated = false
+    private var hasStarted = false
+    private var gate: CheckedContinuation<Void, Never>?
+    private var startWaiters: [CheckedContinuation<Void, Never>] = []
+
     init(results: [Result<CharacterPage3, Error>]) {
         self.results = results
     }
@@ -26,8 +31,36 @@ final class MockLoadAndSortCharactersUseCase3: LoadAndSortCharactersUseCase3Prot
 
     func execute(page: Int) async throws -> CharacterPage3 {
         receivedPages.append(page)
-        defer { callCount += 1 }
-        let result = results[min(callCount, results.count - 1)]
-        return try result.get()
+        callCount += 1
+        let currentResult = results[min(callCount - 1, results.count - 1)]
+
+        if isGated {
+            hasStarted = true
+            let waiters = startWaiters
+            startWaiters.removeAll()
+            for waiter in waiters { waiter.resume() }
+            await withCheckedContinuation { self.gate = $0 }
+        }
+
+        return try currentResult.get()
+    }
+
+    /// Hace que la próxima llamada a `execute` se quede suspendida hasta llamar a `resume()`.
+    func suspendNextCall() {
+        isGated = true
+        hasStarted = false
+    }
+
+    /// Espera hasta que la llamada gated haya entrado en `execute` y esté suspendida.
+    func waitForCallStart() async {
+        if hasStarted { return }
+        await withCheckedContinuation { startWaiters.append($0) }
+    }
+
+    /// Libera la llamada suspendida.
+    func resume() {
+        isGated = false
+        gate?.resume()
+        gate = nil
     }
 }

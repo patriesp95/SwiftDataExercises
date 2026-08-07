@@ -147,4 +147,29 @@ struct CharacterViewModel3Tests {
         #expect(useCase.callCount == 1)
         #expect(useCase.receivedPages == [1])
     }
+    
+    @Test("While a character loading is active , loading next page doesn't call api again")
+    func loadNextPageDoesNotTriggerASecondCallToApi() async throws {
+
+        //Given
+        let useCase = MockLoadAndSortCharactersUseCase3(result: .success(.characterPageTest3))
+        let sut = CharacterViewModel3(loadAndSortCharactersUseCase: useCase)
+        let expectedCharacters = CharacterPage3.characterPageTest3.characters
+
+        //When
+        useCase.suspendNextCall()
+        async let initial: Void = sut.loadInitial()
+        await useCase.waitForCallStart()
+
+        // loadNextPage llamado mientras loadInitial sigue en vuelo — no debe disparar otra petición
+        await sut.loadNextPage()
+
+        useCase.resume()
+        await initial
+
+        //Then
+        #expect(sut.characters3.characters == expectedCharacters)
+        #expect(useCase.callCount == 1)
+        #expect(useCase.receivedPages == [1])
+    }
 }
