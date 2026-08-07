@@ -13,6 +13,8 @@ import Testing
 @MainActor
 struct CharacterViewModel3Tests {
     
+    // MARK: - 1. Estado inicial
+    
     @Test("Initial state")
     func initialState() async throws {
         
@@ -32,6 +34,8 @@ struct CharacterViewModel3Tests {
         }
         
     }
+    
+    // MARK: - 2. Carga inicial correcta
 
     @Test("Initial loading works")
     func initialLoadingWorks() async throws {
@@ -59,6 +63,8 @@ struct CharacterViewModel3Tests {
         #expect(useCase.callCount == 1)
         #expect(useCase.receivedPages == [1])
     }
+    
+    // MARK: - 3. Carga inicial con lista vacía
 
     @Test("ViewModel shows empty state when use case returns no characters")
     func showsEmptyStateWhenUseCaseReturnsNoCharacters() async throws {
@@ -83,6 +89,8 @@ struct CharacterViewModel3Tests {
         #expect(useCase.callCount == 1)
         #expect(useCase.receivedPages == [1])
     }
+    
+    // MARK: - 4. Error durante la carga inicial
 
     @Test("ViewModel shows an error during initial loading")
     func showsAnErrorDuringInitialLoadingOfCharacters() async throws {
@@ -102,6 +110,8 @@ struct CharacterViewModel3Tests {
         #expect(sut.showError3 == true)
         #expect(useCase.callCount == 1)
     }
+    
+    // MARK: - 5. Carga de la siguiente página
     
     @Test("ViewModel shows nextpage when usecase receives it")
     func showsNextpageWhenUsecaseReceivesIt() async throws {
@@ -127,6 +137,8 @@ struct CharacterViewModel3Tests {
         #expect(useCase.receivedPages == [1, 2])
     }
     
+    // MARK: - 6. Fin de la paginación
+    
     @Test("ViewModel shows lastpage")
     func showsLastPage() async throws {
         
@@ -147,6 +159,8 @@ struct CharacterViewModel3Tests {
         #expect(useCase.callCount == 1)
         #expect(useCase.receivedPages == [1])
     }
+    
+    // MARK: - 7. Evita peticiones duplicadas
     
     @Test("While a character loading is active , loading next page doesn't call api again")
     func loadNextPageDoesNotTriggerASecondCallToApi() async throws {
@@ -172,4 +186,5 @@ struct CharacterViewModel3Tests {
         #expect(useCase.callCount == 1)
         #expect(useCase.receivedPages == [1])
     }
+    
 }
