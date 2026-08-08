@@ -9,20 +9,14 @@ import Foundation
 
 protocol URLSessionProtocol {
     func getData3(for request: URLRequest) async throws(NetworkError) -> (
-        data: Data, response: HTTPURLResponse)
+        data: Data, response: URLResponse)
 }
 
 
 extension URLSession: URLSessionProtocol {
-    func getData3(for request: URLRequest) async throws(NetworkError) -> (data: Data, response: HTTPURLResponse) {
+    func getData3(for request: URLRequest) async throws(NetworkError) -> (data: Data, response: URLResponse) {
         do {
-            let (data, response) = try await data(for: request)
-            guard let httpResponse = response as? HTTPURLResponse else {
-                throw NetworkError.invalidResponse
-            }
-            return (data, httpResponse)
-        } catch let error as NetworkError {
-            throw error
+            return try await data(for: request)
         } catch {
             throw .unknown(error)
         }

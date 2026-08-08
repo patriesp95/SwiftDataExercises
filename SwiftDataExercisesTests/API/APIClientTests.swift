@@ -143,12 +143,7 @@ struct APIClientTests {
                 statusCode: 200,
                 httpVersion: nil,
                 headerFields: nil
-            )!,
-            stubError: NetworkError.decodingFailed(
-                DecodingError.dataCorrupted(
-                    .init(codingPath: [], debugDescription: "corrupted")
-                )
-            )
+            )!
         )
         let sut = TestAPIClient(session3: session)
 
@@ -176,12 +171,12 @@ struct APIClientTests {
 
         let session = MockURLSession(
             stubData: json,
-            stubResponse: HTTPURLResponse(
+            stubResponse: URLResponse(
                 url: myNonHTTPRequest.url!,
-                statusCode: 200,
-                httpVersion: nil,
-                headerFields: nil
-            )!,
+                mimeType: nil,
+                expectedContentLength: 0,
+                textEncodingName: nil
+            ),
             stubError: NetworkError.invalidResponse
         )
         let sut = TestAPIClient(session3: session)

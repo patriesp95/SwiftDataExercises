@@ -12,13 +12,13 @@ import Testing
 final class MockURLSession: URLSessionProtocol {
 
     var stubData: Data
-    var stubResponse: HTTPURLResponse
+    var stubResponse: URLResponse
     var stubError: NetworkError?
     private(set) var receivedRequest: URLRequest?
 
     init(
         stubData: Data = Data(),
-        stubResponse: HTTPURLResponse = HTTPURLResponse(),
+        stubResponse: URLResponse = HTTPURLResponse(),
         stubError: NetworkError? = nil
     ) {
         self.stubData = stubData
@@ -27,7 +27,7 @@ final class MockURLSession: URLSessionProtocol {
     }
 
     func getData3(for request: URLRequest) async throws(NetworkError) -> (
-        data: Data, response: HTTPURLResponse
+        data: Data, response: URLResponse
     ) {
         receivedRequest = request
         if let stubError {

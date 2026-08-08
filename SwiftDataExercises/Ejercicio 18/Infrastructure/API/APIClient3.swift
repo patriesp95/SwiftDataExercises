@@ -19,8 +19,12 @@ extension APIClient3 {
     func request3<T>(type: T.Type, _ request: URLRequest) async throws -> T where T: Decodable {
         let (data, response) = try await session3.getData3(for: request)
 
-        guard 200..<300 ~= response.statusCode else {
-            throw NetworkError.httpStatus(code: response.statusCode)
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NetworkError.invalidResponse
+        }
+
+        guard 200..<300 ~= httpResponse.statusCode else {
+            throw NetworkError.httpStatus(code: httpResponse.statusCode)
         }
 
         do {
