@@ -16,9 +16,9 @@ enum HTTPMethod3: String {
 }
 
 extension URLRequest {
-    static func get3(url: URL) -> URLRequest {
+    static func make3(url: URL, httpMethod: HTTPMethod3 = .get) -> URLRequest {
         var request = URLRequest(url: url)
-        request.httpMethod = HTTPMethod3.get.rawValue
+        request.httpMethod = httpMethod.rawValue
         request.timeoutInterval = 60
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")

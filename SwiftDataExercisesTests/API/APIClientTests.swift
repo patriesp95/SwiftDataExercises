@@ -16,15 +16,20 @@ struct APIClientTests {
         let session3: URLSessionProtocol
     }
 
-    private let myRequest = URLRequest.get3(
+    private let myRequest = URLRequest.make3(
         url: CharacterEndpoint3.getCharacters3Paginated(page: 1)
     )
     
-    private let myRequestPage2 = URLRequest.get3(
+    private let myPostRequest = URLRequest.make3(
+        url: CharacterEndpoint3.getCharacters3Paginated(page: 1),
+        httpMethod: .post
+    )
+    
+    private let myRequestPage2 = URLRequest.make3(
         url: CharacterEndpoint3.getCharacters3Paginated(page: 2)
     )
     
-    private let myNonHTTPRequest = URLRequest.get3(url: APIClientTests.api3Fail)
+    private let myNonHTTPRequest = URLRequest.make3(url: APIClientTests.api3Fail)
     
     //MARK: 1. Respuesta 200 OK
 
@@ -295,6 +300,62 @@ struct APIClientTests {
         
         //Then
         #expect(session.receivedRequest?.url?.absoluteString == "https://rickandmortyapi.com/api/character?page=2")
+    }
+    
+    //MARK: 9 HTTPMethod GET is correct
+    
+    @Test("Builds request and assigns it a correct HTTPMethod -> GET")
+    func urlRequestGetsAssignedACorrectGETHTTPMethod() async throws {
+        let json = mockedJson.data(using: .utf8)!
+
+        let session = MockURLSession(
+            stubData: json,
+            stubResponse: HTTPURLResponse(
+                url: myRequestPage2.url!,
+                statusCode: 200,
+                httpVersion: nil,
+                headerFields: nil
+            )!
+        )
+        let sut = TestAPIClient(session3: session)
+
+        //When
+        
+        let _ = try await sut.request3(
+            type: CharacterResponseDTO3.self,
+            myRequestPage2
+        )
+        
+        //Then
+        #expect(session.receivedRequest?.httpMethod == "GET")
+    }
+    
+    //MARK: 10 HTTPMethod POST is correct
+    
+    @Test("Builds request and assigns it a correct HTTPMethod -> POST")
+    func urlRequestGetsAssignedACorrectPOSTHTTPMethod() async throws {
+        let json = mockedJson.data(using: .utf8)!
+
+        let session = MockURLSession(
+            stubData: json,
+            stubResponse: HTTPURLResponse(
+                url: myPostRequest.url!,
+                statusCode: 200,
+                httpVersion: nil,
+                headerFields: nil
+            )!
+        )
+        let sut = TestAPIClient(session3: session)
+
+        //When
+        
+        let _ = try await sut.request3(
+            type: CharacterResponseDTO3.self,
+            myPostRequest
+        )
+        
+        //Then
+        #expect(session.receivedRequest?.httpMethod == "POST")
     }
 }
 

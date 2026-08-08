@@ -14,7 +14,7 @@ struct RemoteCharacterService3: CharacterService3, APIClient3 {
         do {
             let dto = try await request3(
                 type: CharacterResponseDTO3.self,
-                URLRequest.get3(url: CharacterEndpoint3.getCharacters3Paginated(page: page))
+                URLRequest.make3(url: CharacterEndpoint3.getCharacters3Paginated(page: page))
             )
             return dto.toDomain()
         } catch {
