@@ -20,6 +20,8 @@ struct APIClientTests {
         url: CharacterEndpoint3.getCharacters3Paginated(page: 1)
     )
     
+    private let myNonHTTPRequest = URLRequest.get3(url: APIClientTests.api3Fail)
+    
     //MARK: 1. Respuesta 200 OK
 
     @Test("Response 200 OK decodes the payload")
@@ -149,16 +151,87 @@ struct APIClientTests {
             )
         } catch {
             switch error {
-            case NetworkError.decodingFailed(let error):
-                #expect(error.localizedDescription == "The data couldn’t be read because it isn’t in the correct format.")
+            case NetworkError.decodingFailed:
+                #expect(error.localizedDescription == "We received data in an unexpected format.")
             default:
                 Issue.record("NetworkError.decodingFailed, got: \(error)")
+            }
+        }
+    }
+    
+    //MARK: 5. No HTTPURLResponse
+    
+    @Test("Non HTTP response is returned")
+    func invalidResponse() async throws {
+        let json = mockedJson.data(using: .utf8)!
+
+        let session = MockURLSession(
+            stubData: json,
+            stubResponse: HTTPURLResponse(
+                url: myNonHTTPRequest.url!,
+                statusCode: 200,
+                httpVersion: nil,
+                headerFields: nil
+            )!,
+            stubError: NetworkError.invalidResponse
+        )
+        let sut = TestAPIClient(session3: session)
+
+        //When / Then
+        do {
+            _ = try await sut.request3(
+                type: CharacterResponseDTO3.self,
+                myRequest
+            )
+        } catch {
+            switch error {
+            case NetworkError.invalidResponse:
+                #expect(error.localizedDescription == "The server returned an invalid response.")
+            default:
+                Issue.record("NetworkError.invalidResponse, got: \(error)")
+            }
+        }
+    }
+    
+    //MARK: 6. Error de TLS
+    
+    @Test("Transport error: Not connected to internet")
+    func transportError() async throws {
+        let json = mockedJson.data(using: .utf8)!
+
+        let session = MockURLSession(
+            stubData: json,
+            stubResponse: HTTPURLResponse(
+                url: myRequest.url!,
+                statusCode: 200,
+                httpVersion: nil,
+                headerFields: nil
+            )!,
+            stubError: NetworkError.transport(
+                URLError.init(.notConnectedToInternet)
+            )
+        )
+        let sut = TestAPIClient(session3: session)
+
+        //When / Then
+        do {
+            _ = try await sut.request3(
+                type: CharacterResponseDTO3.self,
+                myRequest
+            )
+        } catch {
+            switch error {
+            case NetworkError.transport:
+                #expect(error.localizedDescription == "No internet connection. Check your network and try again.")
+            default:
+                Issue.record("NetworkError.transport, got: \(error)")
             }
         }
     }
 }
 
 extension APIClientTests {
+    static let api3Fail = URL(string: "https://rickandmortyapi.com/apiiiiiiii")!
     fileprivate var mockedJson: String {
         return """
             {
