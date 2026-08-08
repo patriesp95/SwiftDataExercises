@@ -20,6 +20,10 @@ struct APIClientTests {
         url: CharacterEndpoint3.getCharacters3Paginated(page: 1)
     )
     
+    private let myRequestPage2 = URLRequest.get3(
+        url: CharacterEndpoint3.getCharacters3Paginated(page: 2)
+    )
+    
     private let myNonHTTPRequest = URLRequest.get3(url: APIClientTests.api3Fail)
     
     //MARK: 1. Respuesta 200 OK
@@ -263,6 +267,34 @@ struct APIClientTests {
                 Issue.record("NetworkError.transport de timeout, got: \(error)")
             }
         }
+    }
+    
+    //MARK: 8. Error de construcción de la URL
+    
+    @Test("Builds request with correct URL")
+    func urlConstructionError() async throws {
+        let json = mockedJson.data(using: .utf8)!
+
+        let session = MockURLSession(
+            stubData: json,
+            stubResponse: HTTPURLResponse(
+                url: myRequestPage2.url!,
+                statusCode: 200,
+                httpVersion: nil,
+                headerFields: nil
+            )!
+        )
+        let sut = TestAPIClient(session3: session)
+
+        //When
+        
+        let _ = try await sut.request3(
+            type: CharacterResponseDTO3.self,
+            myRequestPage2
+        )
+        
+        //Then
+        #expect(session.receivedRequest?.url?.absoluteString == "https://rickandmortyapi.com/api/character?page=2")
     }
 }
 

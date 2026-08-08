@@ -9,15 +9,27 @@ import Foundation
 import Testing
 @testable import SwiftDataExercises
 
-struct MockURLSession: URLSessionProtocol {
+final class MockURLSession: URLSessionProtocol {
 
-    var stubData: Data = Data()
-    var stubResponse: HTTPURLResponse = HTTPURLResponse()
+    var stubData: Data
+    var stubResponse: HTTPURLResponse
     var stubError: NetworkError?
+    private(set) var receivedRequest: URLRequest?
+
+    init(
+        stubData: Data = Data(),
+        stubResponse: HTTPURLResponse = HTTPURLResponse(),
+        stubError: NetworkError? = nil
+    ) {
+        self.stubData = stubData
+        self.stubResponse = stubResponse
+        self.stubError = stubError
+    }
 
     func getData3(for request: URLRequest) async throws(NetworkError) -> (
         data: Data, response: HTTPURLResponse
     ) {
+        receivedRequest = request
         if let stubError {
             throw stubError
         }
