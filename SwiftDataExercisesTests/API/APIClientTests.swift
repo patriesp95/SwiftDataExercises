@@ -118,6 +118,44 @@ struct APIClientTests {
             }
         }
     }
+    
+    //MARK: 4. JSON corrupto
+    
+    @Test("JSON is corrupted")
+    func jsonIsCorrupted() async throws {
+        let json = mockedJson_corrupted.data(using: .utf8)!
+
+        let session = MockURLSession(
+            stubData: json,
+            stubResponse: HTTPURLResponse(
+                url: myRequest.url!,
+                statusCode: 200,
+                httpVersion: nil,
+                headerFields: nil
+            )!,
+            stubError: NetworkError.decodingFailed(
+                DecodingError.dataCorrupted(
+                    .init(codingPath: [], debugDescription: "corrupted")
+                )
+            )
+        )
+        let sut = TestAPIClient(session3: session)
+
+        //When / Then
+        do {
+            _ = try await sut.request3(
+                type: CharacterResponseDTO3.self,
+                myRequest
+            )
+        } catch {
+            switch error {
+            case NetworkError.decodingFailed(let error):
+                #expect(error.localizedDescription == "The data couldn’t be read because it isn’t in the correct format.")
+            default:
+                Issue.record("NetworkError.decodingFailed, got: \(error)")
+            }
+        }
+    }
 }
 
 extension APIClientTests {
@@ -128,6 +166,39 @@ extension APIClientTests {
                 "results": [
             {
                   "id": 1,
+                  "name": "Rick Sanchez",
+                  "status": "Alive",
+                  "species": "Human",
+                  "type": "",
+                  "gender": "Male",
+                  "origin": {
+                    "name": "Earth",
+                    "url": "https://rickandmortyapi.com/api/location/1"
+                  },
+                  "location": {
+                    "name": "Earth",
+                    "url": "https://rickandmortyapi.com/api/location/20"
+                  },
+                  "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+                  "episode": [
+                    "https://rickandmortyapi.com/api/episode/1",
+                    "https://rickandmortyapi.com/api/episode/2"
+                  ],
+                  "url": "https://rickandmortyapi.com/api/character/1",
+                  "created": "2017-11-04T18:48:46.250Z"
+                }
+            ]
+            }
+            """
+    }
+    
+    fileprivate var mockedJson_corrupted: String {
+        return """
+            {
+                "info": { "count": 826, "pages": 42, "next": "https://rickandmortyapi.com/api/character/?page=2", "prev": null },
+                "results": [
+            {
+                  "id": "1",
                   "name": "Rick Sanchez",
                   "status": "Alive",
                   "species": "Human",

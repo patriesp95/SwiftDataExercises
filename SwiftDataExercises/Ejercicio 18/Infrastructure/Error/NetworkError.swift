@@ -49,8 +49,13 @@ enum NetworkError: Error, LocalizedError {
             default:
                 return "Something went wrong. Please try again."
             }
-        case .decodingFailed:
-            return "We received data in an unexpected format."
+        case .decodingFailed(let error):
+            switch error {
+            case DecodingError.dataCorrupted:
+                return "The data couldn’t be read because it isn’t in the correct format."
+            default:
+                return "Something went wrong \(error.localizedDescription)"
+            }
         case .unknown:
             return "Something went wrong. Please try again."
         }
