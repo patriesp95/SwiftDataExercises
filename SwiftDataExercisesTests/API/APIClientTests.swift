@@ -193,10 +193,10 @@ struct APIClientTests {
         }
     }
     
-    //MARK: 6. Error de TLS
+    //MARK: 6. Error de TLS: No hay conexión a internet
     
     @Test("Transport error: Not connected to internet")
-    func transportError() async throws {
+    func transportNotInternetConnectionError() async throws {
         let json = mockedJson.data(using: .utf8)!
 
         let session = MockURLSession(
@@ -224,7 +224,43 @@ struct APIClientTests {
             case NetworkError.transport:
                 #expect(error.localizedDescription == "No internet connection. Check your network and try again.")
             default:
-                Issue.record("NetworkError.transport, got: \(error)")
+                Issue.record("NetworkError.transport no internet connection, got: \(error)")
+            }
+        }
+    }
+    
+    //MARK: 7. Error de TLS: Timeout
+    
+    @Test("Transport error: timeout")
+    func transportTimeoutError() async throws {
+        let json = mockedJson.data(using: .utf8)!
+
+        let session = MockURLSession(
+            stubData: json,
+            stubResponse: HTTPURLResponse(
+                url: myRequest.url!,
+                statusCode: 200,
+                httpVersion: nil,
+                headerFields: nil
+            )!,
+            stubError: NetworkError.transport(
+                URLError.init(.timedOut)
+            )
+        )
+        let sut = TestAPIClient(session3: session)
+
+        //When / Then
+        do {
+            _ = try await sut.request3(
+                type: CharacterResponseDTO3.self,
+                myRequest
+            )
+        } catch {
+            switch error {
+            case NetworkError.transport:
+                #expect(error.localizedDescription == "The request timed out. Please try again.")
+            default:
+                Issue.record("NetworkError.transport de timeout, got: \(error)")
             }
         }
     }
