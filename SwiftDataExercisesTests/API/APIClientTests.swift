@@ -302,7 +302,7 @@ struct APIClientTests {
         #expect(session.receivedRequest?.url?.absoluteString == "https://rickandmortyapi.com/api/character?page=2")
     }
     
-    //MARK: 9 HTTPMethod GET is correct
+    //MARK: 9 HTTPMethod GET es correcto
     
     @Test("Builds request and assigns it a correct HTTPMethod -> GET")
     func urlRequestGetsAssignedACorrectGETHTTPMethod() async throws {
@@ -330,7 +330,7 @@ struct APIClientTests {
         #expect(session.receivedRequest?.httpMethod == "GET")
     }
     
-    //MARK: 10 HTTPMethod POST is correct
+    //MARK: 10 HTTPMethod POST es correcto
     
     @Test("Builds request and assigns it a correct HTTPMethod -> POST")
     func urlRequestGetsAssignedACorrectPOSTHTTPMethod() async throws {
@@ -356,6 +356,36 @@ struct APIClientTests {
         
         //Then
         #expect(session.receivedRequest?.httpMethod == "POST")
+    }
+    
+    //MARK: 11 Las headers de la request son correctas
+    
+    @Test("Builds request with expected headers")
+    func urlRequestHeadersAreCorrect() async throws {
+        let json = mockedJson.data(using: .utf8)!
+
+        let session = MockURLSession(
+            stubData: json,
+            stubResponse: HTTPURLResponse(
+                url: myRequest.url!,
+                statusCode: 200,
+                httpVersion: nil,
+                headerFields: nil
+            )!
+        )
+        let sut = TestAPIClient(session3: session)
+
+        //When
+        
+        let _ = try await sut.request3(
+            type: CharacterResponseDTO3.self,
+            myRequest
+        )
+        
+        //Then
+        #expect(session.receivedRequest != nil)
+        #expect(session.receivedRequest?.value(forHTTPHeaderField: "Accept") == "application/json")
+        #expect(session.receivedRequest?.value(forHTTPHeaderField: "Content-Type") == "application/json; charset=utf-8")
     }
 }
 
